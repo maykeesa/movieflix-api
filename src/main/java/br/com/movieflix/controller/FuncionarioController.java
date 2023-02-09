@@ -80,7 +80,7 @@ public class FuncionarioController {
 		}
 
 		return ResponseEntity.notFound().build();
-	}
+	} 
 
 	// Deletar funcionario
 	@DeleteMapping("/{id}")
