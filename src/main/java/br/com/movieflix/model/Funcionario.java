@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
 import lombok.Data;
 
 @Data
@@ -24,4 +23,15 @@ public class Funcionario {
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;
+	
+	public Funcionario() {
+	}
+	
+	public Funcionario(String nome, String email, String senha, Filial filial) {
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.filialId = filial;
+	}
+	
 }
