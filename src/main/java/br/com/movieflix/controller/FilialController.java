@@ -35,8 +35,7 @@ public class FilialController {
 
 	// Lista todos os funcionarios
 	@GetMapping
-	public Page<FilialDto> listarTodos(
-			@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao) {
+	public Page<FilialDto> listarTodos(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao) {
 		Page<Filial> filiais = this.filialRep.findAll(paginacao);
 		return FilialDto.converter(filiais);
 	}
@@ -55,8 +54,7 @@ public class FilialController {
 
 	// Cadastrar funcionario
 	@PostMapping
-	public ResponseEntity<FilialDto> cadastrar(@RequestBody @Valid FilialForm filialForm,
-			UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<FilialDto> cadastrar(@RequestBody @Valid FilialForm filialForm, UriComponentsBuilder uriBuilder) {
 		Filial filial = filialForm.converter();
 		this.filialRep.save(filial);
 
@@ -66,11 +64,10 @@ public class FilialController {
 
 	// Editar funcionario
 	@PutMapping("/{id}")
-	public ResponseEntity<FilialDto> atualizar(@PathVariable Long id,
-			@RequestBody @Valid FilialForm filialForm) {
+	public ResponseEntity<FilialDto> atualizar(@PathVariable Long id, @RequestBody @Valid FilialForm filialForm) {
 		Optional<Filial> filialOpt = this.filialRep.findById(id);
 		if (filialOpt.isPresent()) {
-			Filial filial = filialForm.converter();
+			Filial filial = filialForm.atualizar(filialOpt);
 			return ResponseEntity.ok(new FilialDto(filial));
 		}
 

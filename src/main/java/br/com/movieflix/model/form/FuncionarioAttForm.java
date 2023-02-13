@@ -1,7 +1,5 @@
 package br.com.movieflix.model.form;
 
-import java.util.Optional;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -18,8 +16,7 @@ public class FuncionarioAttForm {
 	@Email
 	private String email;
 
-	public Funcionario atualizar(Long id, Optional<Funcionario> funcOpt) {
-		Funcionario func = funcOpt.get();
+	public Funcionario atualizar(Funcionario func) {
 		func.setNome(this.nome);
 		func.setEmail(this.email);
 		

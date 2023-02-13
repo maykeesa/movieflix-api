@@ -1,7 +1,6 @@
 package br.com.movieflix.controller;
 
 import java.net.URI;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -26,68 +25,64 @@ import br.com.movieflix.model.dto.FuncionarioDto;
 import br.com.movieflix.model.form.FuncionarioAttForm;
 import br.com.movieflix.model.form.FuncionarioForm;
 import br.com.movieflix.repository.FilialRepository;
-import br.com.movieflix.repository.FuncionarioRepository;
+import br.com.movieflix.service.FuncionarioService;
 
 @RestController
 @RequestMapping("/funcionario")
 public class FuncionarioController {
-
+	
 	@Autowired
-	private FuncionarioRepository funcRep;
+	private FuncionarioService funcService;
 
 	@Autowired
 	private FilialRepository filialRep;
 
-	// Lista todos os funcionarios
 	@GetMapping
-	public Page<FuncionarioDto> listarTodos(
-			@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao) {
-		Page<Funcionario> funcionarios = this.funcRep.findAll(paginacao);
-		return FuncionarioDto.converter(funcionarios);
+	public Page<FuncionarioDto> listarTodos(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao) {
+		return this.funcService.pageFuncionario(paginacao);
 	}
 
-	// Lista funcionario por Id
 	@GetMapping("/{id}")
 	public ResponseEntity<FuncionarioDto> listarUnico(@PathVariable Long id) {
-		Optional<Funcionario> funcOpt = this.funcRep.findById(id);
-		if (funcOpt.isPresent()) {
-			Funcionario fudc = funcOpt.get();
-			return ResponseEntity.ok(new FuncionarioDto(fudc));
+		if (this.funcService.isIdFuncionarioPresent(id)) {
+			Funcionario func = this.funcService.getFuncionarioById(id);
+			return ResponseEntity.ok(new FuncionarioDto(func));
 		}
 
 		return ResponseEntity.notFound().build();
 	}
 
-	// Cadastrar funcionario
 	@PostMapping
-	public ResponseEntity<FuncionarioDto> cadastrar(@RequestBody @Valid FuncionarioForm funcForm,
-			UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<FuncionarioDto> cadastrar(@RequestBody @Valid FuncionarioForm funcForm, UriComponentsBuilder uriBuilder) {
 		Funcionario func = funcForm.converter(this.filialRep);
-		this.funcRep.save(func);
-
-		URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(func.getId()).toUri();
+		URI uri = this.funcService.cadastrar(func, uriBuilder);
 		return ResponseEntity.created(uri).body(new FuncionarioDto(func));
 	}
+	
+	@PostMapping("/{id}/gerente")
+	public ResponseEntity<FuncionarioDto> cadastrarGerente(@PathVariable Long id){
+		if(this.funcService.isIdFuncionarioPresent(id)) {
+			this.funcService.cadastrarGerente(id);
+			return ResponseEntity.ok().build();
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
 
-	// Editar funcionario
 	@PutMapping("/{id}")
-	public ResponseEntity<FuncionarioDto> atualizar(@PathVariable Long id,
-			@RequestBody @Valid FuncionarioAttForm funcForm) {
-		Optional<Funcionario> funcOpt = funcRep.findById(id);
-		if (funcOpt.isPresent()) {
-			Funcionario func = funcForm.atualizar(id, funcOpt);
+	public ResponseEntity<FuncionarioDto> atualizar(@PathVariable Long id, @RequestBody @Valid FuncionarioAttForm funcForm) {
+		if (this.funcService.isIdFuncionarioPresent(id)) {
+			Funcionario func = funcForm.atualizar(this.funcService.getFuncionarioById(id));
 			return ResponseEntity.ok(new FuncionarioDto(func));
 		}
 
 		return ResponseEntity.notFound().build();
 	} 
 
-	// Deletar funcionario
 	@DeleteMapping("/{id}")
 	public ResponseEntity<FuncionarioDto> remover(@PathVariable Long id) {
-		Optional<Funcionario> funcOpt = this.funcRep.findById(id);
-		if (funcOpt.isPresent()) {
-			this.funcRep.deleteById(id);
+		if (this.funcService.isIdFuncionarioPresent(id)) {
+			this.funcService.deletarFuncionarioById(id);
 			return ResponseEntity.ok().build();
 		}
 
