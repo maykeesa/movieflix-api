@@ -1,5 +1,7 @@
 package br.com.movieflix.model.dto;
 
+import java.util.UUID;
+
 import org.springframework.data.domain.Page;
 
 import br.com.movieflix.model.Filial;
@@ -10,7 +12,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class FilialDto {
 
-	private Long id;
+	private UUID id;
 	private String cep;
 	private String endereco;
 	private String numero;
