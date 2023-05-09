@@ -25,4 +25,4 @@ public class Compra {
 	@OneToOne
 	private Usuario usuario;
 	private ArrayList<Produto> produtos;
-}
+} 
