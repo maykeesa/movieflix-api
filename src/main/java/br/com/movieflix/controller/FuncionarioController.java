@@ -1,6 +1,7 @@
 package br.com.movieflix.controller;
 
 import java.net.URI;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -43,7 +44,7 @@ public class FuncionarioController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<FuncionarioDto> listarUnico(@PathVariable Long id) {
+	public ResponseEntity<FuncionarioDto> listarUnico(@PathVariable UUID id) {
 		if (this.funcService.isIdFuncionarioPresent(id)) {
 			Funcionario func = this.funcService.getFuncionarioById(id);
 			return ResponseEntity.ok(new FuncionarioDto(func));
@@ -60,7 +61,7 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/{id}/gerente")
-	public ResponseEntity<FuncionarioDto> cadastrarGerente(@PathVariable Long id){
+	public ResponseEntity<FuncionarioDto> cadastrarGerente(@PathVariable UUID id){
 		if(this.funcService.isIdFuncionarioPresent(id)) {
 			this.funcService.cadastrarGerente(id);
 			return ResponseEntity.ok().build();
@@ -70,7 +71,7 @@ public class FuncionarioController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<FuncionarioDto> atualizar(@PathVariable Long id, @RequestBody @Valid FuncionarioAttForm funcForm) {
+	public ResponseEntity<FuncionarioDto> atualizar(@PathVariable UUID id, @RequestBody @Valid FuncionarioAttForm funcForm) {
 		if (this.funcService.isIdFuncionarioPresent(id)) {
 			Funcionario func = funcForm.atualizar(this.funcService.getFuncionarioById(id));
 			return ResponseEntity.ok(new FuncionarioDto(func));
@@ -80,7 +81,7 @@ public class FuncionarioController {
 	} 
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<FuncionarioDto> remover(@PathVariable Long id) {
+	public ResponseEntity<FuncionarioDto> remover(@PathVariable UUID id) {
 		if (this.funcService.isIdFuncionarioPresent(id)) {
 			this.funcService.deletarFuncionarioById(id);
 			return ResponseEntity.ok().build();

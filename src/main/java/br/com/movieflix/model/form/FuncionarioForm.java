@@ -10,6 +10,8 @@ import br.com.movieflix.model.Funcionario;
 import br.com.movieflix.repository.FilialRepository;
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Getter
 public class FuncionarioForm {
 
@@ -20,7 +22,7 @@ public class FuncionarioForm {
 	@NotBlank @NotNull @NotEmpty
 	private String senha;
 	@NotNull
-	private Long filialId; 
+	private UUID filialId;
 	
 	public Funcionario converter(FilialRepository filialRep) {
 		Filial filial = filialRep.findById(filialId).get();

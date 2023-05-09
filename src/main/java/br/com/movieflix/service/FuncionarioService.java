@@ -2,6 +2,7 @@ package br.com.movieflix.service;
 
 import java.net.URI;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,7 +21,7 @@ public class FuncionarioService {
 	private FuncionarioRepository funcRep;
 	
 	// Retorna se funcionario existe ou nao, pelo Id
-	public boolean isIdFuncionarioPresent(Long id) {
+	public boolean isIdFuncionarioPresent(UUID id) {
 		Optional<Funcionario> funcOpt = this.funcRep.findById(id);
 		if(funcOpt.isPresent()) {
 			return true;
@@ -29,7 +30,7 @@ public class FuncionarioService {
 	}
 
 	// Retorna funcionario por Id
-	public Funcionario getFuncionarioById(Long id) {
+	public Funcionario getFuncionarioById(UUID id) {
 		return this.funcRep.findById(id).get();
 	}
 	
@@ -46,14 +47,14 @@ public class FuncionarioService {
 	}
 
 	// Cadastrar funcionario como gerente
-	public void cadastrarGerente(Long id) {
+	public void cadastrarGerente(UUID id) {
 		Funcionario func = this.getFuncionarioById(id);
 		func.setGerent(true);
 		this.funcRep.save(func);
 	}
 	
 	// Deletar funcionario
-	public void deletarFuncionarioById(Long id) {
+	public void deletarFuncionarioById(UUID id) {
 		this.funcRep.deleteById(id);
 	}
 }

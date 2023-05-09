@@ -2,6 +2,7 @@ package br.com.movieflix.controller;
 
 import java.net.URI;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -42,7 +43,7 @@ public class FilialController {
 
 	// Lista funcionario por Id
 	@GetMapping("/{id}")
-	public ResponseEntity<FilialDto> listarUnico(@PathVariable Long id) {
+	public ResponseEntity<FilialDto> listarUnico(@PathVariable UUID id) {
 		Optional<Filial> filialOpt = this.filialRep.findById(id);
 		if (filialOpt.isPresent()) {
 			Filial filial = filialOpt.get();
@@ -64,7 +65,7 @@ public class FilialController {
 
 	// Editar funcionario
 	@PutMapping("/{id}")
-	public ResponseEntity<FilialDto> atualizar(@PathVariable Long id, @RequestBody @Valid FilialForm filialForm) {
+	public ResponseEntity<FilialDto> atualizar(@PathVariable UUID id, @RequestBody @Valid FilialForm filialForm) {
 		Optional<Filial> filialOpt = this.filialRep.findById(id);
 		if (filialOpt.isPresent()) {
 			Filial filial = filialForm.atualizar(filialOpt);
@@ -76,7 +77,7 @@ public class FilialController {
 
 	// Deletar funcionario
 	@DeleteMapping("/{id}")
-	public ResponseEntity<FilialDto> remover(@PathVariable Long id) {
+	public ResponseEntity<FilialDto> remover(@PathVariable UUID id) {
 		Optional<Filial> filialOpt = this.filialRep.findById(id);
 		if (filialOpt.isPresent()) {
 			this.filialRep.deleteById(id);
