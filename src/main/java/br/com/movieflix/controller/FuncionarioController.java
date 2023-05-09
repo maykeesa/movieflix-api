@@ -64,7 +64,10 @@ public class FuncionarioController {
 	public ResponseEntity<FuncionarioDto> cadastrarGerente(@PathVariable UUID id){
 		if(this.funcService.isIdFuncionarioPresent(id)) {
 			this.funcService.cadastrarGerente(id);
+			
+			System.out.println("teste");
 			return ResponseEntity.ok().build();
+
 		}
 		
 		return ResponseEntity.notFound().build();
