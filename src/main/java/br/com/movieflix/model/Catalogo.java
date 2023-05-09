@@ -1,6 +1,5 @@
 package br.com.movieflix.model;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -16,13 +15,14 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Produto {
+public class Catalogo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	private String nome;
-	private BigDecimal preco;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Filme filmeId;
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;

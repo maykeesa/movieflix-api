@@ -22,5 +22,4 @@ public class Filme {
 	private int nota;
 	private String dataLancamento;
 	private String diretor;
-	
 }

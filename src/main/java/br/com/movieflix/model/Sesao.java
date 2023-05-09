@@ -1,5 +1,6 @@
 package br.com.movieflix.model;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -7,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -21,10 +21,14 @@ public class Sesao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	@ManyToOne
+	private LocalDateTime horarioSesao;
+	@OneToOne
 	@JoinColumn(referencedColumnName = "id")
-	private Filial filiaId;
+	private Sala salaId;
 	@OneToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filme filmeId;
+	@OneToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Filial filiaId;
 }
