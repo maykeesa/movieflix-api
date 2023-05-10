@@ -1,7 +1,5 @@
 package br.com.movieflix.model.form;
 
-import java.util.Optional;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -30,8 +28,7 @@ public class FilialForm {
 		return new Filial(this.cep, this.endereco, this.numero, this.bairro, this.cidade, this.uf);
 	}
 	
-	public Filial atualizar(Optional<Filial> filialOpt) {
-		Filial filial = filialOpt.get();
+	public Filial atualizar(Filial filial) {
 		filial.setCep(this.cep);
 		filial.setEndereco(this.endereco);
 		filial.setNumero(this.numero);

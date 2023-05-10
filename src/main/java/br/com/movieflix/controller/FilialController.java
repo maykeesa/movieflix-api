@@ -1,7 +1,6 @@
 package br.com.movieflix.controller;
 
 import java.net.URI;
-import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -25,62 +24,56 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.movieflix.model.Filial;
 import br.com.movieflix.model.dto.FilialDto;
 import br.com.movieflix.model.form.FilialForm;
-import br.com.movieflix.repository.FilialRepository;
+import br.com.movieflix.service.FilialService;
 
 @RestController
 @RequestMapping("/filial")
 public class FilialController {
 
 	@Autowired
-	private FilialRepository filialRep;
+	private FilialService filialService;
 
-	// Lista todos os funcionarios
+	// Lista todas as filiais
 	@GetMapping
 	public Page<FilialDto> listarTodos(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao) {
-		Page<Filial> filiais = this.filialRep.findAll(paginacao);
-		return FilialDto.converter(filiais);
+		return this.filialService.pageFilial(paginacao);
 	}
 
-	// Lista funcionario por Id
+	// Lista filial por Id
 	@GetMapping("/{id}")
 	public ResponseEntity<FilialDto> listarUnico(@PathVariable UUID id) {
-		Optional<Filial> filialOpt = this.filialRep.findById(id);
-		if (filialOpt.isPresent()) {
-			Filial filial = filialOpt.get();
+		if (this.filialService.isFilialPresent(id)) {
+			Filial filial = this.filialService.getFilialById(id);
 			return ResponseEntity.ok(new FilialDto(filial));
 		}
 
 		return ResponseEntity.notFound().build();
 	}
 
-	// Cadastrar funcionario
+	// Cadastrar filial
 	@PostMapping
 	public ResponseEntity<FilialDto> cadastrar(@RequestBody @Valid FilialForm filialForm, UriComponentsBuilder uriBuilder) {
 		Filial filial = filialForm.converter();
-		this.filialRep.save(filial);
-
-		URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(filial.getId()).toUri();
+		URI uri = this.filialService.cadastrar(filial, uriBuilder);
 		return ResponseEntity.created(uri).body(new FilialDto(filial));
 	}
 
-	// Editar funcionario
+	// Editar filial
 	@PutMapping("/{id}")
 	public ResponseEntity<FilialDto> atualizar(@PathVariable UUID id, @RequestBody @Valid FilialForm filialForm) {
-		Optional<Filial> filialOpt = this.filialRep.findById(id);
-		if (filialOpt.isPresent()) {
-			Filial filial = filialForm.atualizar(filialOpt);
+		if (this.filialService.isFilialPresent(id)) {
+			Filial filial = this.filialService.atualizar(id, filialForm);
 			return ResponseEntity.ok(new FilialDto(filial));
 		}
 
 		return ResponseEntity.notFound().build();
 	} 
 
-	// Deletar funcionario
+	// Deletar filial
 	@DeleteMapping("/{id}")
 	public ResponseEntity<FilialDto> remover(@PathVariable UUID id) {
-		Optional<Filial> filialOpt = this.filialRep.findById(id);
-		if (filialOpt.isPresent()) {
-			this.filialRep.deleteById(id);
+		if (this.filialService.isFilialPresent(id)) {
+			this.filialService.deletarFilialById(id);
 			return ResponseEntity.ok().build();
 		}
 

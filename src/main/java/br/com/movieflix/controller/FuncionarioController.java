@@ -23,8 +23,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.movieflix.model.Funcionario;
 import br.com.movieflix.model.dto.FuncionarioDto;
-import br.com.movieflix.model.form.FuncionarioAttForm;
 import br.com.movieflix.model.form.FuncionarioForm;
+import br.com.movieflix.model.form.att.FuncionarioAttForm;
 import br.com.movieflix.repository.FilialRepository;
 import br.com.movieflix.service.FuncionarioService;
 
@@ -45,7 +45,7 @@ public class FuncionarioController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<FuncionarioDto> listarUnico(@PathVariable UUID id) {
-		if (this.funcService.isIdFuncionarioPresent(id)) {
+		if (this.funcService.isFuncionarioPresent(id)) {
 			Funcionario func = this.funcService.getFuncionarioById(id);
 			return ResponseEntity.ok(new FuncionarioDto(func));
 		}
@@ -62,7 +62,7 @@ public class FuncionarioController {
 	
 	@PostMapping("/{id}/gerente")
 	public ResponseEntity<FuncionarioDto> cadastrarGerente(@PathVariable UUID id){
-		if(this.funcService.isIdFuncionarioPresent(id)) {
+		if(this.funcService.isFuncionarioPresent(id)) {
 			this.funcService.cadastrarGerente(id);
 			return ResponseEntity.ok().build();
 		}
@@ -71,9 +71,9 @@ public class FuncionarioController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<FuncionarioDto> atualizar(@PathVariable UUID id, @RequestBody @Valid FuncionarioAttForm funcForm) {
-		if (this.funcService.isIdFuncionarioPresent(id)) {
-			Funcionario func = funcForm.atualizar(this.funcService.getFuncionarioById(id));
+	public ResponseEntity<FuncionarioDto> atualizar(@PathVariable UUID id, @RequestBody @Valid FuncionarioAttForm funcAttForm) {
+		if (this.funcService.isFuncionarioPresent(id)) {
+			Funcionario func = this.funcService.atualizar(id, funcAttForm);
 			return ResponseEntity.ok(new FuncionarioDto(func));
 		}
 
@@ -82,7 +82,7 @@ public class FuncionarioController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<FuncionarioDto> remover(@PathVariable UUID id) {
-		if (this.funcService.isIdFuncionarioPresent(id)) {
+		if (this.funcService.isFuncionarioPresent(id)) {
 			this.funcService.deletarFuncionarioById(id);
 			return ResponseEntity.ok().build();
 		}

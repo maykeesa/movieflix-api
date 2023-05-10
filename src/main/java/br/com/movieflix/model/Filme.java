@@ -2,10 +2,7 @@ package br.com.movieflix.model;
 
 import java.util.UUID;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +17,8 @@ public class Filme {
 	private UUID id;
 	private String nome;
 	private int nota;
-	private String dataLancamento;
+	@Column(columnDefinition = "TEXT")
+	private String sinopse;
 	private String diretor;
+	private String dataLancamento;
 }

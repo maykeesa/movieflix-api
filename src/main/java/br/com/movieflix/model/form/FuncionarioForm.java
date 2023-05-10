@@ -23,9 +23,9 @@ public class FuncionarioForm {
 	private String senha;
 	@NotNull
 	private UUID filialId;
-	
+	 
 	public Funcionario converter(FilialRepository filialRep) {
-		Filial filial = filialRep.findById(filialId).get();
+		Filial filial = filialRep.findById(this.filialId).get();
 		return new Funcionario(this.nome, this.email, this.senha, filial);
 	}
 	
