@@ -1,15 +1,17 @@
 package br.com.movieflix.model.form;
 
 import br.com.movieflix.model.Filme;
+import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+@Getter
 public class FilmeForm {
-    @NotBlank @NotNull @NotEmpty 
+
+
     private String nome ;
     @NotNull
     private int nota ;
