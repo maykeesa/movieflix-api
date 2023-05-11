@@ -11,13 +11,22 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Usuario {
+public class Usuario{
 
 	@Id
 	private String cpf;
 	private String nome;
 	private String email;
 	private String senha;
-	private LocalDateTime dataAniversario;
+	private String dataNascimento;
 	private LocalDateTime contaCriada;
+	
+	public Usuario(String cpf, String nome, String email, String senha, String dataNascimento) {
+		this.cpf = cpf;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.dataNascimento = dataNascimento;
+		this.contaCriada = LocalDateTime.now();
+	}
 }

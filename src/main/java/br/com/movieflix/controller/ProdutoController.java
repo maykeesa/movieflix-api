@@ -34,54 +34,57 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
-	
+
 	@Autowired
 	private FilialRepository filialRep;
 
 	// Lista todos os produto
-		@GetMapping
-		public Page<ProdutoDto> listarTodos(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao) {
-			return produtoService.pageProduto(paginacao);
+	@GetMapping
+	public Page<ProdutoDto> listarTodos(
+			@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao) {
+		return produtoService.pageProduto(paginacao);
+	}
+
+	// Lista produto por Id
+	@GetMapping("/{id}")
+	public ResponseEntity<ProdutoDto> listarUnico(@PathVariable UUID id) {
+		if (this.produtoService.isProdutoPresent(id)) {
+			Produto produto = this.produtoService.getProdutoById(id);
+			return ResponseEntity.ok(new ProdutoDto(produto));
 		}
 
-		// Lista produto por Id
-		@GetMapping("/{id}")
-		public ResponseEntity<ProdutoDto> listarUnico(@PathVariable UUID id) {
-			if (this.produtoService.isProdutoPresent(id)) {
-				Produto produto = this.produtoService.getProdutoById(id);
-				return ResponseEntity.ok(new ProdutoDto(produto));
-			}
+		return ResponseEntity.notFound().build();
+	}
 
-			return ResponseEntity.notFound().build();
+	// Cadastrar produto
+	@PostMapping
+	public ResponseEntity<ProdutoDto> cadastrar(@RequestBody @Valid ProdutoForm produtoForm,
+			UriComponentsBuilder uriBuilder) {
+		Produto produto = produtoForm.converter(this.filialRep);
+		URI uri = this.produtoService.cadastrar(produto, uriBuilder);
+		return ResponseEntity.created(uri).body(new ProdutoDto(produto));
+	}
+
+	// Editar produto
+	@PutMapping("/{id}")
+	public ResponseEntity<ProdutoDto> atualizar(@PathVariable UUID id,
+			@RequestBody @Valid ProdutoAttForm produtoAttForm) {
+		if (this.produtoService.isProdutoPresent(id)) {
+			Produto produto = this.produtoService.atualizar(id, produtoAttForm);
+			return ResponseEntity.ok(new ProdutoDto(produto));
 		}
 
-		// Cadastrar produto
-		@PostMapping
-		public ResponseEntity<ProdutoDto> cadastrar(@RequestBody @Valid ProdutoForm produtoForm, UriComponentsBuilder uriBuilder) {
-			Produto produto = produtoForm.converter(this.filialRep);
-			URI uri = this.produtoService.cadastrar(produto, uriBuilder);
-			return ResponseEntity.created(uri).body(new ProdutoDto(produto));
+		return ResponseEntity.notFound().build();
+	}
+
+	// Deletar produto
+	@DeleteMapping("/{id}")
+	public ResponseEntity<ProdutoDto> remover(@PathVariable UUID id) {
+		if (this.produtoService.isProdutoPresent(id)) {
+			this.produtoService.deletarProdutoById(id);
+			return ResponseEntity.ok().build();
 		}
 
-		// Editar produto
-		@PutMapping("/{id}")
-		public ResponseEntity<ProdutoDto> atualizar(@PathVariable UUID id, @RequestBody @Valid ProdutoAttForm produtoAttForm) {
-			if (this.produtoService.isProdutoPresent(id)) {
-				Produto produto = this.produtoService.atualizar(id, produtoAttForm);
-				return ResponseEntity.ok(new ProdutoDto(produto));
-			}
-
-			return ResponseEntity.notFound().build();
-		} 
-
-		// Deletar produto
-		@DeleteMapping("/{id}")
-		public ResponseEntity<ProdutoDto> remover(@PathVariable UUID id) {
-			if (this.produtoService.isProdutoPresent(id)) {
-				this.produtoService.deletarProdutoById(id);
-				return ResponseEntity.ok().build();
-			}
-
-			return ResponseEntity.notFound().build();
-		}
+		return ResponseEntity.notFound().build();
+	}
 }

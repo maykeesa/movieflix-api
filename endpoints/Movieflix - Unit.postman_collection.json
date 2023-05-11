@@ -1,0 +1,686 @@
+{
+	"info": {
+		"_postman_id": "759994b3-e87a-4c20-b277-46a432b1b3ba",
+		"name": "Movieflix | Unit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24814361"
+	},
+	"item": [
+		{
+			"name": "Funcionario",
+			"item": [
+				{
+					"name": "localhost:8080/funcionario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/funcionario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/funcionario/{id}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/funcionario/17d8f2c8-84ad-4632-aba3-688ca4592beb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionario",
+								"17d8f2c8-84ad-4632-aba3-688ca4592beb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/funcionario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Yuri\",\r\n    \"email\":\"yuri@gmail.com\",\r\n    \"senha\":\"senha123\",\r\n    \"filialId\":\"9d6cfb7e-90a7-45a2-b312-4ed5587637ab\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/funcionario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/funcionario/{id}/gerente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Mayke\",\r\n    \"email\":\"mayke@gmail.com\",\r\n    \"senha\":\"senha123\",\r\n    \"filialId\":\"1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/funcionario/17d8f2c8-84ad-4632-aba3-688ca4592beb/gerente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionario",
+								"17d8f2c8-84ad-4632-aba3-688ca4592beb",
+								"gerente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/funcionario/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Mayke Erick\",\r\n    \"email\":\"mayke@gmail.com\",\r\n    \"senha\":\"senha123\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/funcionario/d811f159-13a2-4350-87b4-28c223c7e7f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionario",
+								"d811f159-13a2-4350-87b4-28c223c7e7f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/funcionario/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/funcionario/17d8f2c8-84ad-4632-aba3-688ca4592beb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"funcionario",
+								"17d8f2c8-84ad-4632-aba3-688ca4592beb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Filial",
+			"item": [
+				{
+					"name": "localhost:8080/filial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filial",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filial"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/filial/{id}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/filial/9d6cfb7e-90a7-45a2-b312-4ed5587637ab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filial",
+								"9d6cfb7e-90a7-45a2-b312-4ed5587637ab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/filial",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\":\"49031001\",\r\n    \"endereco\":\"Rua Marcos Leite\",\r\n    \"numero\":\"100\",\r\n    \"bairro\":\"Atalaia\",\r\n    \"cidade\":\"Aracaju\",\r\n    \"uf\":\"SE\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/filial",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filial"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/filial/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\":\"49031002\",\r\n    \"endereco\":\"Rua José Cabral\",\r\n    \"numero\":\"105\",\r\n    \"bairro\":\"Atalaia\",\r\n    \"cidade\":\"Aracaju\",\r\n    \"uf\":\"SE\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/filial/9d6cfb7e-90a7-45a2-b312-4ed5587637ab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filial",
+								"9d6cfb7e-90a7-45a2-b312-4ed5587637ab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/filial/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filial/2c6b77ee-0d39-48bd-9b55-82aca14cf9c7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filial",
+								"2c6b77ee-0d39-48bd-9b55-82aca14cf9c7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Filme",
+			"item": [
+				{
+					"name": "localhost:8080/filme",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filme",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filme"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/filme/{id}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/filme/b0fd3fbe-414f-4263-a643-ac8ae385b3d2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filme",
+								"b0fd3fbe-414f-4263-a643-ac8ae385b3d2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/filme",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Vingadores\",\r\n    \"nota\":9,\r\n    \"sinopse\":\"Ultimato\",\r\n    \"diretor\":\"Mark\",\r\n    \"dataLancamento\":\"11-02-2012\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/filme",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filme"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/filme/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Vingadores\",\r\n    \"nota\":8,\r\n    \"sinopse\":\"Ultimato\",\r\n    \"diretor\":\"Mark\",\r\n    \"dataLancamento\":\"11-02-2012\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/filme/b70fff13-1ca1-4eb6-8fbd-6b84a3758efe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filme",
+								"b70fff13-1ca1-4eb6-8fbd-6b84a3758efe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/filme/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filme/b70fff13-1ca1-4eb6-8fbd-6b84a3758efe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filme",
+								"b70fff13-1ca1-4eb6-8fbd-6b84a3758efe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "localhost:8080/produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/produto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/produto/{cpf}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/produto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/produto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Snickers\",\r\n    \"preco\":10.2,\r\n    \"filialId\":\"9d6cfb7e-90a7-45a2-b312-4ed5587637ab\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/produto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/produto/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\":\"49031002\",\r\n    \"endereco\":\"Rua Pedro Cabral\",\r\n    \"numero\":\"105\",\r\n    \"bairro\":\"Atalaia\",\r\n    \"cidade\":\"Aracaju\",\r\n    \"uf\":\"SE\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/produto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/prdotuo/{id} Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/produto/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "localhost:8080/usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/usuario/{cpf}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\":\"11122233344\",\r\n    \"nome\":\"Mayke Erick\",\r\n    \"email\":\"mayke@gmail.com\",\r\n    \"senha\":\"senha123\",\r\n    \"dataNascimento\":\"16/03/2003\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/usuario/{cpf}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Mayke\",\r\n    \"email\":\"mayke@gmail.com\",\r\n    \"senha\":\"senha123\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/11122233344",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"11122233344"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/usuario/{cpf}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

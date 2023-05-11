@@ -1,5 +1,6 @@
 package br.com.movieflix.model;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Funcionario {
+public class Funcionario{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +25,7 @@ public class Funcionario {
 	private boolean isGerent;
 	private String email;
 	private String senha;
+	private BigDecimal salario;
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;

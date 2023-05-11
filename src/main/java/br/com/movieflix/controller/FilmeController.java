@@ -43,7 +43,7 @@ public class FilmeController {
         return ResponseEntity.notFound().build();
     }
 
-    //cadastrar filme
+    // Cadastrar filme
     @PostMapping
     public ResponseEntity<FilmeDto> cadastrar(@RequestBody @Valid FilmeForm filmeForm, UriComponentsBuilder uriBuilder) {
         Filme filme = filmeForm.converter();
@@ -51,7 +51,7 @@ public class FilmeController {
         return ResponseEntity.created(uri).body(new FilmeDto(filme));
     }
 
-    //editar filme
+    // Editar filme
     @PutMapping("/{id}")
     public ResponseEntity<FilmeDto> editar(@PathVariable UUID id, @RequestBody @Valid FilmeForm filmeForm) {
         if (this.filmeService.isFilmePresent(id)) {
@@ -62,11 +62,11 @@ public class FilmeController {
         return ResponseEntity.notFound().build();
     }
 
-    //deletar filme
+    // Deletar filme
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable UUID id) {
         if (this.filmeService.isFilmePresent(id)) {
-            this.filmeService.deletar(id);
+            this.filmeService.deletarFilmeById(id);
             return ResponseEntity.ok().build();
         }
 

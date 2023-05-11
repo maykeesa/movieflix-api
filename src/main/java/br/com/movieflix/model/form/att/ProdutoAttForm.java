@@ -7,12 +7,14 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.movieflix.model.Produto;
+import lombok.Setter;
 
+@Setter
 public class ProdutoAttForm {
 
 	@NotBlank @NotNull @NotEmpty
 	private String nome;
-	@NotBlank @NotNull @NotEmpty
+	@NotNull
 	private BigDecimal preco;
 	
 	public Produto atualizar(Produto produto) {

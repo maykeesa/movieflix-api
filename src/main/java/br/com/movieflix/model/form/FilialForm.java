@@ -37,5 +37,4 @@ public class FilialForm {
 		filial.setUf(this.uf);
 		return filial;
 	}
-
 }
