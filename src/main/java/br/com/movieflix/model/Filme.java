@@ -21,4 +21,12 @@ public class Filme {
 	private String sinopse;
 	private String diretor;
 	private String dataLancamento;
+
+	public Filme(String nome, int nota, String sinopse, String diretor, String dataLancamento) {
+		this.nome = nome;
+		this.nota = nota;
+		this.sinopse = sinopse;
+		this.diretor = diretor;
+		this.dataLancamento = dataLancamento;
+	}
 }
