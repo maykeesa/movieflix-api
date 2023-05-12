@@ -71,7 +71,7 @@ public class FilialController {
 
 	// Deletar filial
 	@DeleteMapping("/{id}")
-	public ResponseEntity<FilialDto> remover(@PathVariable UUID id) {
+	public ResponseEntity<?> remover(@PathVariable UUID id) {
 		if (this.filialService.isFilialPresent(id)) {
 			this.filialService.deletarFilialById(id);
 			return ResponseEntity.ok().build();

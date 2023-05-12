@@ -1,36 +1,31 @@
 package br.com.movieflix.model.form;
 
-import br.com.movieflix.model.Administrador;
-import br.com.movieflix.model.Filial;
-import br.com.movieflix.service.AdministradorService;
+import java.util.UUID;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
 
+import br.com.movieflix.model.Administrador;
+import br.com.movieflix.model.Filial;
+import br.com.movieflix.repository.FilialRepository;
+import lombok.Getter;
+
+@Getter
 public class AdministradorForm {
-    @NotBlank @NotNull @NotEmpty
+	
+    @NotBlank @NotEmpty
     private String nome;
-    @NotBlank @NotNull @NotEmpty
+    @Email
     private String email;
-    @NotBlank @NotNull @NotEmpty
+    @NotBlank @NotEmpty
     private String senha;
     @NotNull
-    private Filial filialId;
+    private UUID filialId;
 
-    public Administrador converter() {
-        return new Administrador(this.nome, this.email, this.senha, this.filialId);
+    public Administrador converter(FilialRepository filialRep) {
+    	Filial filial = filialRep.findById(this.filialId).get();
+        return new Administrador(this.nome, this.email, this.senha, filial);
     }
-
-    public Administrador atualizar(Administrador administrador) {
-        administrador.setNome(this.nome);
-        administrador.setEmail(this.email);
-        administrador.setSenha(this.senha);
-        administrador.setFilialId(this.filialId);
-        return administrador;
-    }
-
-
-
 }
