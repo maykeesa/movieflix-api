@@ -38,11 +38,13 @@ public class FuncionarioController {
 	@Autowired
 	private FilialRepository filialRep;
 
+	// Lista todas os funcionarios
 	@GetMapping
 	public Page<FuncionarioDto> listarTodos(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao) {
 		return this.funcService.pageFuncionario(paginacao);
 	}
 
+	// Lista por Id funcionario
 	@GetMapping("/{id}")
 	public ResponseEntity<FuncionarioDto> listarUnico(@PathVariable UUID id) {
 		if (this.funcService.isFuncionarioPresent(id)) {
@@ -53,6 +55,7 @@ public class FuncionarioController {
 		return ResponseEntity.notFound().build();
 	}
 
+	// Cadastrar funcionario
 	@PostMapping
 	public ResponseEntity<FuncionarioDto> cadastrar(@RequestBody @Valid FuncionarioForm funcForm, UriComponentsBuilder uriBuilder) {
 		Funcionario func = funcForm.converter(this.filialRep);
@@ -60,6 +63,7 @@ public class FuncionarioController {
 		return ResponseEntity.created(uri).body(new FuncionarioDto(func));
 	}
 	
+	// Transforma funcionario em gerente
 	@PostMapping("/{id}/gerente")
 	public ResponseEntity<FuncionarioDto> cadastrarGerente(@PathVariable UUID id){
 		if(this.funcService.isFuncionarioPresent(id)) {
@@ -70,6 +74,7 @@ public class FuncionarioController {
 		return ResponseEntity.notFound().build();
 	}
 
+	// Editar funcionario
 	@PutMapping("/{id}")
 	public ResponseEntity<FuncionarioDto> atualizar(@PathVariable UUID id, @RequestBody @Valid FuncionarioAttForm funcAttForm) {
 		if (this.funcService.isFuncionarioPresent(id)) {
@@ -80,8 +85,9 @@ public class FuncionarioController {
 		return ResponseEntity.notFound().build();
 	} 
 
+	// Deletar funcionario
 	@DeleteMapping("/{id}")
-	public ResponseEntity<FuncionarioDto> remover(@PathVariable UUID id) {
+	public ResponseEntity<?> remover(@PathVariable UUID id) {
 		if (this.funcService.isFuncionarioPresent(id)) {
 			this.funcService.deletarFuncionarioById(id);
 			return ResponseEntity.ok().build();
