@@ -26,4 +26,11 @@ public class Administrador{
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;
+
+	public Administrador(String nome, String email, String senha, Filial filialId) {
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.filialId = filialId;
+	}
 }
