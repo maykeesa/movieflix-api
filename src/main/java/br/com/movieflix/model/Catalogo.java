@@ -2,6 +2,7 @@ package br.com.movieflix.model;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,10 +21,10 @@ public class Catalogo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id")
 	private Filme filmeId;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;
 }

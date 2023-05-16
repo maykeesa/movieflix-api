@@ -62,5 +62,4 @@ public class AdministradorService {
 	public void deletarAdministratorById(UUID id) {
 		this.administradorRep.deleteById(id);
 	}
-
 }

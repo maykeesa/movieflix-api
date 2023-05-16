@@ -2,6 +2,7 @@ package br.com.movieflix.model;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Estoque {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	private Long quantidade;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id")
 	private Produto produtoId;	
 }

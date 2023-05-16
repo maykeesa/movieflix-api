@@ -3,6 +3,7 @@ package br.com.movieflix.model;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,13 +23,13 @@ public class Sesao {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	private LocalDateTime horarioSesao;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id")
 	private Sala salaId;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id")
 	private Filme filmeId;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filiaId;
 }
