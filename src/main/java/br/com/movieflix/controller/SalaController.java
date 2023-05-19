@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.movieflix.dto.SalaDto;
+import br.com.movieflix.form.SalaForm;
+import br.com.movieflix.form.att.SalaAttForm;
 import br.com.movieflix.model.Sala;
-import br.com.movieflix.model.dto.SalaDto;
-import br.com.movieflix.model.form.SalaForm;
-import br.com.movieflix.model.form.att.SalaAttForm;
 import br.com.movieflix.repository.FilialRepository;
 import br.com.movieflix.service.SalaService;
 
@@ -58,7 +58,7 @@ public class SalaController {
 	// Cadastrar sala
 	@PostMapping
 	public ResponseEntity<SalaDto> cadastrar(@RequestBody @Valid SalaForm salaForm, UriComponentsBuilder uriBuilder) {
-		Sala sala = salaForm.converter(this.filialRep);
+		Sala sala = salaForm.converterToModel(this.filialRep);
 		URI uri = this.salaService.cadastrar(sala, uriBuilder);
 		return ResponseEntity.created(uri).body(new SalaDto(sala));
 	}

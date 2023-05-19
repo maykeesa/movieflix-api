@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.movieflix.dto.FuncionarioDto;
+import br.com.movieflix.form.FuncionarioForm;
+import br.com.movieflix.form.att.FuncionarioAttForm;
 import br.com.movieflix.model.Funcionario;
-import br.com.movieflix.model.dto.FuncionarioDto;
-import br.com.movieflix.model.form.FuncionarioForm;
-import br.com.movieflix.model.form.att.FuncionarioAttForm;
 import br.com.movieflix.repository.FilialRepository;
 import br.com.movieflix.service.FuncionarioService;
 
@@ -58,7 +58,7 @@ public class FuncionarioController {
 	// Cadastrar funcionario
 	@PostMapping
 	public ResponseEntity<FuncionarioDto> cadastrar(@RequestBody @Valid FuncionarioForm funcForm, UriComponentsBuilder uriBuilder) {
-		Funcionario func = funcForm.converter(this.filialRep);
+		Funcionario func = funcForm.converterToModel(this.filialRep);
 		URI uri = this.funcService.cadastrar(func, uriBuilder);
 		return ResponseEntity.created(uri).body(new FuncionarioDto(func));
 	}

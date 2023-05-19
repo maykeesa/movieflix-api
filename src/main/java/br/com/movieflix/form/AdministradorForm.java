@@ -1,4 +1,4 @@
-package br.com.movieflix.model.form;
+package br.com.movieflix.form;
 
 import java.util.UUID;
 
@@ -24,7 +24,7 @@ public class AdministradorForm {
     @NotNull
     private UUID filialId;
 
-    public Administrador converter(FilialRepository filialRep) {
+    public Administrador converterToModel(FilialRepository filialRep) {
     	Filial filial = filialRep.findById(this.filialId).get();
         return new Administrador(this.nome, this.email, this.senha, filial);
     }

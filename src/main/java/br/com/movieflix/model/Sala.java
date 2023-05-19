@@ -2,7 +2,6 @@ package br.com.movieflix.model;
 
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +23,7 @@ public class Sala {
 	private String nome;
 	private int capacidade;
 	private boolean ocupada;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;
 	
