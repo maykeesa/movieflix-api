@@ -21,7 +21,7 @@ public class Sessao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	private LocalDateTime horarioSesao;
+	private LocalDateTime horarioSessao;
 	@OneToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Sala salaId;
@@ -32,8 +32,8 @@ public class Sessao {
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filiaId;
 	
-	public Sessao(LocalDateTime horarioSesao, Sala sala, Filme filme, Filial filial) {
-		this.horarioSesao = horarioSesao;
+	public Sessao(LocalDateTime horarioSessao, Sala sala, Filme filme, Filial filial) {
+		this.horarioSessao = horarioSessao;
 		this.salaId = sala;
 		this.filmeId = filme;
 		this.filiaId = filial;

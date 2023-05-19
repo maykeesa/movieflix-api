@@ -30,4 +30,10 @@ public class Compra {
 	@JoinTable(name = "compraId", joinColumns = @JoinColumn(name = "id"), 
 			inverseJoinColumns = @JoinColumn(name = "id"))
 	private ArrayList<Produto> produtos;
+	
+	public Compra(LocalDateTime dataCompra, Usuario usuario, ArrayList<Produto> produtos) {
+		this.dataCompra = dataCompra;
+		this.usuario = usuario;
+		this.produtos = produtos;
+	}
 } 

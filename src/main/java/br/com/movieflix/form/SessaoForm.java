@@ -30,7 +30,7 @@ public class SessaoForm {
 	private UUID filialId;
 	
 	public Sessao converterToModel(SalaRepository salaRep, FilmeRepository filmeRep, FilialRepository filialRep) {
-		LocalDateTime dataSessao = DateService.dataStringToClass(horarioSessao);
+		LocalDateTime dataSessao = DateService.dataSessaoToClass(horarioSessao);
 		Sala sala = salaRep.findById(this.salaId).get();
 		Filme filme = filmeRep.findById(this.filmeId).get();
 		Filial filial = filialRep.findById(this.filialId).get();

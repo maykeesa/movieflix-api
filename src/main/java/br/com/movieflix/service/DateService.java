@@ -10,6 +10,11 @@ public class DateService {
 
 	public static LocalDateTime dataStringToClass(String data) {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm:ss");
+		return LocalDateTime.parse(data + " 00:00:00", formato);
+	}
+	
+	public static LocalDateTime dataSessaoToClass(String data) {
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm:ss");
 		return LocalDateTime.parse(data, formato);
 	}
 }

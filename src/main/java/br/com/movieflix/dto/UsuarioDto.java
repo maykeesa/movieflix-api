@@ -15,7 +15,7 @@ public class UsuarioDto {
 	private String cpf;
 	private String nome;
 	private String email;
-	private String dataNascimento;
+	private LocalDateTime dataNascimento;
 	private LocalDateTime contaCriada;
 	
 	public UsuarioDto(Usuario user) {

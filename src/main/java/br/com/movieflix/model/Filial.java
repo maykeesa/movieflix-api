@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Filial {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
