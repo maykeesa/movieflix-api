@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -24,8 +24,10 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	private LocalDateTime dataCompra;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(referencedColumnName = "cpf")
 	private Usuario usuario;
+	@JoinTable(name = "compraId", joinColumns = @JoinColumn(name = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "id"))
 	private ArrayList<Produto> produtos;
 } 

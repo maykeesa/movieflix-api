@@ -1,4 +1,4 @@
-package br.com.movieflix.model.form;
+package br.com.movieflix.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -24,7 +24,7 @@ public class FuncionarioForm {
 	@NotNull
 	private UUID filialId;
 	 
-	public Funcionario converter(FilialRepository filialRep) {
+	public Funcionario converterToModel(FilialRepository filialRep) {
 		Filial filial = filialRep.findById(this.filialId).get();
 		return new Funcionario(this.nome, this.email, this.senha, filial);
 	}

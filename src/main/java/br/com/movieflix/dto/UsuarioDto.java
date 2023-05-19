@@ -1,4 +1,4 @@
-package br.com.movieflix.model.dto;
+package br.com.movieflix.dto;
 
 import java.time.LocalDateTime;
 

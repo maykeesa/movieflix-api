@@ -3,7 +3,6 @@ package br.com.movieflix.model;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +23,7 @@ public class Produto {
 	private UUID id;
 	private String nome;
 	private BigDecimal preco;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;
 	

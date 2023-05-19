@@ -1,4 +1,4 @@
-package br.com.movieflix.model.form.att;
+package br.com.movieflix.form.att;
 
 import java.math.BigDecimal;
 

@@ -10,9 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.movieflix.dto.AdministradorDto;
+import br.com.movieflix.form.att.AdministradorAttForm;
 import br.com.movieflix.model.Administrador;
-import br.com.movieflix.model.dto.AdministradorDto;
-import br.com.movieflix.model.form.att.AdministradorAttForm;
 import br.com.movieflix.repository.AdministradorRepository;
 
 @Service

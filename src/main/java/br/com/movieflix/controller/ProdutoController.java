@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.movieflix.dto.ProdutoDto;
+import br.com.movieflix.form.ProdutoForm;
+import br.com.movieflix.form.att.ProdutoAttForm;
 import br.com.movieflix.model.Produto;
-import br.com.movieflix.model.dto.ProdutoDto;
-import br.com.movieflix.model.form.ProdutoForm;
-import br.com.movieflix.model.form.att.ProdutoAttForm;
 import br.com.movieflix.repository.FilialRepository;
 import br.com.movieflix.service.ProdutoService;
 
@@ -60,7 +60,7 @@ public class ProdutoController {
 	@PostMapping
 	public ResponseEntity<ProdutoDto> cadastrar(@RequestBody @Valid ProdutoForm produtoForm,
 			UriComponentsBuilder uriBuilder) {
-		Produto produto = produtoForm.converter(this.filialRep);
+		Produto produto = produtoForm.converterToModel(this.filialRep);
 		URI uri = this.produtoService.cadastrar(produto, uriBuilder);
 		return ResponseEntity.created(uri).body(new ProdutoDto(produto));
 	}

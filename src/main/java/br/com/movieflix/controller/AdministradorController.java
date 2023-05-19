@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.movieflix.dto.AdministradorDto;
+import br.com.movieflix.form.AdministradorForm;
+import br.com.movieflix.form.att.AdministradorAttForm;
 import br.com.movieflix.model.Administrador;
-import br.com.movieflix.model.dto.AdministradorDto;
-import br.com.movieflix.model.form.AdministradorForm;
-import br.com.movieflix.model.form.att.AdministradorAttForm;
 import br.com.movieflix.repository.FilialRepository;
 import br.com.movieflix.service.AdministradorService;
 
@@ -59,7 +59,7 @@ public class AdministradorController {
 	@PostMapping
 	public ResponseEntity<AdministradorDto> cadastrar(@RequestBody @Valid AdministradorForm administradorForm,
 			UriComponentsBuilder uriBuilder) {
-		Administrador administrador = administradorForm.converter(this.filialRep);
+		Administrador administrador = administradorForm.converterToModel(this.filialRep);
 		URI uri = this.administradorService.cadastrar(administrador, uriBuilder);
 		return ResponseEntity.created(uri).body(new AdministradorDto(administrador));
 	}

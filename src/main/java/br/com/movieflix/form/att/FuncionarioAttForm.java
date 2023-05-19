@@ -1,15 +1,15 @@
-package br.com.movieflix.model.form.att;
+package br.com.movieflix.form.att;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import br.com.movieflix.model.Usuario;
+import br.com.movieflix.model.Funcionario;
 import lombok.Setter;
 
 @Setter
-public class UsuarioAttForm {
+public class FuncionarioAttForm {
 	
 	@NotBlank @NotNull @NotEmpty
 	private String nome;
@@ -17,11 +17,11 @@ public class UsuarioAttForm {
 	private String email;
 	@NotBlank @NotNull @NotEmpty
 	private String senha;
-	
-	public Usuario atualizar(Usuario user) {
-		user.setNome(this.nome);
-		user.setEmail(this.email);
-		user.setSenha(this.senha);
-		return user;
+
+	public Funcionario atualizar(Funcionario func) {
+		func.setNome(this.nome);
+		func.setEmail(this.email);
+		func.setSenha(senha);
+		return func;
 	}
 }
