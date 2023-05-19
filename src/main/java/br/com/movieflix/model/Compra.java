@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -24,6 +25,7 @@ public class Compra {
 	private UUID id;
 	private LocalDateTime dataCompra;
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(referencedColumnName = "cpf")
 	private Usuario usuario;
 	private ArrayList<Produto> produtos;
 } 

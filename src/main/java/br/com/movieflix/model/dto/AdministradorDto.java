@@ -28,5 +28,4 @@ public class AdministradorDto {
 	public static Page<AdministradorDto> converter(Page<Administrador> administradores) {
 		return administradores.map(AdministradorDto::new);
 	}
-
 }
