@@ -1,7 +1,7 @@
 package br.com.movieflix.dto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -19,13 +19,13 @@ public class CompraDto {
 	private UUID id;
 	private LocalDateTime dataCompra;
 	private Usuario usuario;
-	private ArrayList<Produto> produtos;
+	private List<Produto> produtosCompra;
 	
 	public CompraDto(Compra compra) {
 		this.id = compra.getId();
 		this.dataCompra = compra.getDataCompra();
 		this.usuario = compra.getUsuario();
-		this.produtos = compra.getProdutos();
+		this.produtosCompra = compra.getProdutosCompra();
 	}
 	
 	public static Page<CompraDto> converter(Page<Compra> compras){

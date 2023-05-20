@@ -1,6 +1,6 @@
 package br.com.movieflix.form.att;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.com.movieflix.model.Compra;
 import br.com.movieflix.model.Produto;
@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 public class CompraAttForm {
 
-	private ArrayList<Produto> produtos;
+	private List<Produto> produtosCompra;
 	
 	public Compra atualizar(Compra compra) {
-		compra.setProdutos(this.produtos);
+		compra.setProdutosCompra(this.produtosCompra);
 		return compra;
 	}
 }

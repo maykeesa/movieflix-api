@@ -2,6 +2,7 @@ package br.com.movieflix.service;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -41,7 +42,7 @@ public class ProdutoService {
     }
     
     // Transforma uma lista de UUID de produtos em uma lista de Produtos
-    public ArrayList<Produto> uuidToProduto(ArrayList<UUID> produtosId, ProdutoRepository produtoRep){
+    public ArrayList<Produto> uuidToProduto(List<UUID> produtosId, ProdutoRepository produtoRep){
     	ArrayList<Produto> produtos;
     	if(produtosId.size() != 0) {
     		produtos = new ArrayList<Produto>();
