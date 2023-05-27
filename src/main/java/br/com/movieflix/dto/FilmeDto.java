@@ -1,12 +1,14 @@
-package br.com.movieflix.model.dto;
+package br.com.movieflix.dto;
 
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import org.springframework.data.domain.Page;
 
 import br.com.movieflix.model.Filme;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.domain.Page;
-
-import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
@@ -17,7 +19,7 @@ public class FilmeDto {
     private int nota;
     private String sinopse;
     private String diretor;
-    private String dataLancamento;
+    private LocalDateTime dataLancamento;
 
     public FilmeDto(Filme filme) {
         this.id = filme.getId();

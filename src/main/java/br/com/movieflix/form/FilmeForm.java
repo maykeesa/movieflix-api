@@ -1,4 +1,6 @@
-package br.com.movieflix.model.form;
+package br.com.movieflix.form;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
@@ -6,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.movieflix.model.Filme;
+import br.com.movieflix.service.DateService;
 import lombok.Getter;
 
 @Getter
@@ -23,16 +26,18 @@ public class FilmeForm {
     @NotBlank @NotEmpty
     private String dataLancamento ;
 
-    public Filme converter() {
-        return new Filme(this.nome, this.nota, this.sinopse, this.diretor, this.dataLancamento);
+    public Filme converterToModel() {
+    	LocalDateTime dataLancamento = DateService.dataStringToClass(this.dataLancamento);
+        return new Filme(this.nome, this.nota, this.sinopse, this.diretor, dataLancamento);
     }
 
     public Filme atualizar(Filme filme) {
-        filme.setNome(this.nome);
+    	LocalDateTime dataLancamento = DateService.dataStringToClass(this.dataLancamento);
+    	filme.setNome(this.nome);
         filme.setNota(this.nota);
         filme.setSinopse(this.sinopse);
         filme.setDiretor(this.diretor);
-        filme.setDataLancamento(this.dataLancamento);
+        filme.setDataLancamento(dataLancamento);
         return filme;
     }
 }

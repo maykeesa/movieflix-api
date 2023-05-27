@@ -20,17 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.movieflix.dto.UsuarioDto;
+import br.com.movieflix.form.UsuarioForm;
+import br.com.movieflix.form.att.UsuarioAttForm;
 import br.com.movieflix.model.Usuario;
-import br.com.movieflix.model.dto.UsuarioDto;
-import br.com.movieflix.model.form.UsuarioForm;
-import br.com.movieflix.model.form.att.UsuarioAttForm;
 import br.com.movieflix.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-	
 	@Autowired
 	private UsuarioService userService;
 
@@ -56,7 +55,7 @@ public class UsuarioController {
 	@PostMapping
 	public ResponseEntity<UsuarioDto> cadastrar(@RequestBody @Valid UsuarioForm usuarioForm,
 			UriComponentsBuilder uriBuilder) {
-		Usuario user = usuarioForm.converter();
+		Usuario user = usuarioForm.converterToModel();
 		URI uri = this.userService.cadastrar(user, uriBuilder);
 		return ResponseEntity.created(uri).body(new UsuarioDto(user));
 	}

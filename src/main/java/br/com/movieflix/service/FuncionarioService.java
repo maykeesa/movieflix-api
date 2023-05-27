@@ -10,9 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.movieflix.dto.FuncionarioDto;
+import br.com.movieflix.form.att.FuncionarioAttForm;
 import br.com.movieflix.model.Funcionario;
-import br.com.movieflix.model.dto.FuncionarioDto;
-import br.com.movieflix.model.form.att.FuncionarioAttForm;
 import br.com.movieflix.repository.FuncionarioRepository;
 
 @Service

@@ -1,4 +1,4 @@
-package br.com.movieflix.model.form;
+package br.com.movieflix.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -21,7 +21,7 @@ public class UsuarioForm {
 	@NotBlank @NotEmpty
 	private String dataNascimento;
 	
-	public Usuario converter() {
+	public Usuario converterToModel() {
 		return new Usuario(this.cpf, this.nome, this.email, this.senha, this.dataNascimento);
 	}
 }

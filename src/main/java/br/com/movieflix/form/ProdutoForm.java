@@ -1,4 +1,4 @@
-package br.com.movieflix.model.form;
+package br.com.movieflix.form;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -22,7 +22,7 @@ public class ProdutoForm {
 	@NotNull
 	private UUID filialId;
 	
-	public Produto converter(FilialRepository filialRep) {
+	public Produto converterToModel(FilialRepository filialRep) {
 		Filial filial = filialRep.findById(this.filialId).get();
 		return new Produto(this.nome, this.preco, filial);
 	}	

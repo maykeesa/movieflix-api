@@ -1,4 +1,4 @@
-package br.com.movieflix.model.dto;
+package br.com.movieflix.dto;
 
 import java.util.UUID;
 
@@ -28,5 +28,4 @@ public class AdministradorDto {
 	public static Page<AdministradorDto> converter(Page<Administrador> administradores) {
 		return administradores.map(AdministradorDto::new);
 	}
-
 }

@@ -25,7 +25,7 @@ public class Reserva {
 	private Compra compraId;
 	@OneToOne
 	@JoinColumn(referencedColumnName = "id")
-	private Sesao sesaoId;
+	private Sessao sessaoId;
 
 	public Reserva(Compra compraId, Sesao sesaoId) {
 		this.compraId = compraId;

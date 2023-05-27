@@ -1,8 +1,9 @@
 package br.com.movieflix.controller;
 
+import br.com.movieflix.dto.FilmeDto;
+import br.com.movieflix.form.FilmeForm;
 import br.com.movieflix.model.Filme;
-import br.com.movieflix.model.dto.FilmeDto;
-import br.com.movieflix.model.form.FilmeForm;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,7 +47,7 @@ public class FilmeController {
     // Cadastrar filme
     @PostMapping
     public ResponseEntity<FilmeDto> cadastrar(@RequestBody @Valid FilmeForm filmeForm, UriComponentsBuilder uriBuilder) {
-        Filme filme = filmeForm.converter();
+        Filme filme = filmeForm.converterToModel();
         URI uri = this.filmeService.cadastrar(filme, uriBuilder);
         return ResponseEntity.created(uri).body(new FilmeDto(filme));
     }

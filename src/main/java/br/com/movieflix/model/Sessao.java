@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Sesao {
+public class Sessao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,4 +31,11 @@ public class Sesao {
 	@OneToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filiaId;
+	
+	public Sessao(LocalDateTime horarioSesao, Sala sala, Filme filme, Filial filial) {
+		this.horarioSesao = horarioSesao;
+		this.salaId = sala;
+		this.filmeId = filme;
+		this.filiaId = filial;
+	}
 }

@@ -1,4 +1,4 @@
-package br.com.movieflix.model.form;
+package br.com.movieflix.form;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -24,7 +24,7 @@ public class FilialForm {
 	@NotBlank @NotNull @NotEmpty
 	private String uf;
 	
-	public Filial converter() {
+	public Filial converterToModel() {
 		return new Filial(this.cep, this.endereco, this.numero, this.bairro, this.cidade, this.uf);
 	}
 	

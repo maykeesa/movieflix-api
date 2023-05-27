@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.movieflix.dto.FilialDto;
+import br.com.movieflix.form.FilialForm;
 import br.com.movieflix.model.Filial;
-import br.com.movieflix.model.dto.FilialDto;
-import br.com.movieflix.model.form.FilialForm;
 import br.com.movieflix.service.FilialService;
 
 @RestController
@@ -53,7 +53,7 @@ public class FilialController {
 	// Cadastrar filial
 	@PostMapping
 	public ResponseEntity<FilialDto> cadastrar(@RequestBody @Valid FilialForm filialForm, UriComponentsBuilder uriBuilder) {
-		Filial filial = filialForm.converter();
+		Filial filial = filialForm.converterToModel();
 		URI uri = this.filialService.cadastrar(filial, uriBuilder);
 		return ResponseEntity.created(uri).body(new FilialDto(filial));
 	}

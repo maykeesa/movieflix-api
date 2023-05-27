@@ -1,8 +1,8 @@
 package br.com.movieflix.service;
 
+import br.com.movieflix.dto.FilmeDto;
+import br.com.movieflix.form.FilmeForm;
 import br.com.movieflix.model.Filme;
-import br.com.movieflix.model.dto.FilmeDto;
-import br.com.movieflix.model.form.FilmeForm;
 import br.com.movieflix.repository.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
