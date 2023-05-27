@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 
 import br.com.movieflix.model.Compra;
 import br.com.movieflix.model.Produto;
-import br.com.movieflix.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,13 +17,13 @@ public class CompraDto {
 
 	private UUID id;
 	private LocalDateTime dataCompra;
-	private Usuario usuario;
+	private UsuarioDto usuario;
 	private List<Produto> produtosCompra;
 	
 	public CompraDto(Compra compra) {
 		this.id = compra.getId();
 		this.dataCompra = compra.getDataCompra();
-		this.usuario = compra.getUsuario();
+		this.usuario = new UsuarioDto(compra.getUsuario());
 		this.produtosCompra = compra.getProdutosCompra();
 	}
 	

@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 
-import br.com.movieflix.model.Filial;
 import br.com.movieflix.model.Filme;
 import br.com.movieflix.model.Sala;
 import br.com.movieflix.model.Sessao;
@@ -18,16 +17,14 @@ public class SessaoDto {
 
 	private UUID id;
 	private LocalDateTime horarioSessao;
-	private Sala sala;
 	private Filme filme;
-	private Filial filial;
+	private Sala sala;
 	
 	public SessaoDto(Sessao sessao) {
 		this.id = sessao.getId();
 		this.horarioSessao = sessao.getHorarioSessao();
-		this.sala = sessao.getSalaId();
 		this.filme = sessao.getFilmeId();
-		this.filial = sessao.getFiliaId();
+		this.sala = sessao.getSalaId();
 	}
 	
 	public static Page<SessaoDto> converter(Page<Sessao> sessoes) {

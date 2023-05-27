@@ -15,20 +15,24 @@ import lombok.Getter;
 public class FilmeForm {
 
 	@NotBlank @NotEmpty
-    private String nome ;
+    private String nome;
     @NotNull
-    private int nota ;
+    private int nota;
     @NotBlank @NotEmpty
     @Column(columnDefinition = "TEXT")
-    private String sinopse ;
+    private String sinopse;
     @NotBlank @NotEmpty
-    private String diretor ;
+    private String diretor;
+    private String srcCapa;
     @NotBlank @NotEmpty
-    private String dataLancamento ;
+    private String dataLancamento;
 
     public Filme converterToModel() {
     	LocalDateTime dataLancamento = DateService.dataStringToClass(this.dataLancamento);
-        return new Filme(this.nome, this.nota, this.sinopse, this.diretor, dataLancamento);
+    	if(this.srcCapa == "") {
+    		return new Filme(this.nome, this.nota, this.sinopse, this.diretor, dataLancamento);    		
+    	}
+    	return new Filme(this.nome, this.nota, this.sinopse, this.diretor, this.srcCapa, dataLancamento);   
     }
 
     public Filme atualizar(Filme filme) {

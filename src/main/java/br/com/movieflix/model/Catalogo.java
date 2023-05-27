@@ -26,4 +26,9 @@ public class Catalogo {
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;
+	
+	public Catalogo(Filme filme, Filial filial) {
+		this.filmeId = filme;
+		this.filialId = filial;
+	}
 }
