@@ -19,6 +19,7 @@ public class FilmeDto {
     private int nota;
     private String sinopse;
     private String diretor;
+    private String srcCapa;
     private LocalDateTime dataLancamento;
 
     public FilmeDto(Filme filme) {
@@ -27,6 +28,7 @@ public class FilmeDto {
         this.nota = filme.getNota();
         this.sinopse = filme.getSinopse();
         this.diretor = filme.getDiretor();
+        this.srcCapa = filme.getSrcCapa();
         this.dataLancamento = filme.getDataLancamento();
     }
 

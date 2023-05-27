@@ -16,14 +16,14 @@ public class FuncionarioDto {
 	private UUID id;
 	private String nome;
 	private String email;
-	private boolean gerent;
+	private boolean gerente;
 	private Filial filial;
 	
 	public FuncionarioDto(Funcionario func) {
 		this.id = func.getId();
 		this.nome = func.getNome();
 		this.email = func.getEmail();
-		this.gerent = func.isGerent();
+		this.gerente = func.isGerent();
 		this.filial = func.getFilialId();
 	}
 	
