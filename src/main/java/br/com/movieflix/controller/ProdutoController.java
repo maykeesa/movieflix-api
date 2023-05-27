@@ -79,7 +79,7 @@ public class ProdutoController {
 
 	// Deletar produto
 	@DeleteMapping("/{id}")
-	public ResponseEntity<ProdutoDto> remover(@PathVariable UUID id) {
+	public ResponseEntity<?> remover(@PathVariable UUID id) {
 		if (this.produtoService.isProdutoPresent(id)) {
 			this.produtoService.deletarProdutoById(id);
 			return ResponseEntity.ok().build();

@@ -70,7 +70,7 @@ public class SessaoController {
 
 	// Deletar sessao
 	@DeleteMapping("/{id}")
-	public ResponseEntity<SessaoDto> remover(@PathVariable UUID id) {
+	public ResponseEntity<?> remover(@PathVariable UUID id) {
 		if (this.sessaoService.isSessaoPresent(id)) {
 			this.sessaoService.deletarSessaoById(id);
 			return ResponseEntity.ok().build();

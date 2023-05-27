@@ -1,10 +1,13 @@
 package br.com.movieflix.form;
 
+import java.time.LocalDateTime;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import br.com.movieflix.model.Usuario;
+import br.com.movieflix.service.DateService;
 import lombok.Getter;
 
 @Getter
@@ -22,6 +25,7 @@ public class UsuarioForm {
 	private String dataNascimento;
 	
 	public Usuario converterToModel() {
-		return new Usuario(this.cpf, this.nome, this.email, this.senha, this.dataNascimento);
+		LocalDateTime dataNasc = DateService.dataStringToClass(dataNascimento);
+		return new Usuario(this.cpf, this.nome, this.email, this.senha, dataNasc);
 	}
 }

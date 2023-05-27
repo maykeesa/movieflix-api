@@ -17,14 +17,14 @@ import lombok.Getter;
 public class SessaoDto {
 
 	private UUID id;
-	private LocalDateTime horarioSesao;
+	private LocalDateTime horarioSessao;
 	private Sala sala;
 	private Filme filme;
 	private Filial filial;
 	
 	public SessaoDto(Sessao sessao) {
 		this.id = sessao.getId();
-		this.horarioSesao = sessao.getHorarioSesao();
+		this.horarioSessao = sessao.getHorarioSessao();
 		this.sala = sessao.getSalaId();
 		this.filme = sessao.getFilmeId();
 		this.filial = sessao.getFiliaId();

@@ -73,7 +73,7 @@ public class UsuarioController {
 
 	// Deletar usuario
 	@DeleteMapping("/{id}")
-	public ResponseEntity<UsuarioDto> remover(@PathVariable String id) {
+	public ResponseEntity<?> remover(@PathVariable String id) {
 		if (this.userService.isUsuarioPresent(id)) {
 			this.userService.deletarUsuarioById(id);
 			return ResponseEntity.ok().build();

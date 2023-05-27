@@ -1,9 +1,10 @@
 package br.com.movieflix.repository;
 
-import br.com.movieflix.model.Compra;
+import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.UUID;
+import br.com.movieflix.model.Compra;
 
-public interface CompraRepository extends JpaRepository<Compra, UUID> {
+public interface CompraRepository extends JpaRepository<Compra, UUID>{
+
 }
