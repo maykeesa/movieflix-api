@@ -54,6 +54,16 @@ public class AdministradorController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
+	// Lista por Id administrador
+	@GetMapping("/email/{email}")
+	public ResponseEntity<AdministradorDto> listarByEmail(@PathVariable String email) {
+		if (!email.equals(null)) {
+			Administrador administrador = this.administradorService.getAdministradorByEmail(email);
+			return ResponseEntity.ok(new AdministradorDto(administrador));
+		}
+		return ResponseEntity.notFound().build();
+	}
 
 	// Cadastrar administrador
 	@PostMapping

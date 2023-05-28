@@ -27,8 +27,8 @@ public class Reserva {
 	@JoinColumn(referencedColumnName = "id")
 	private Sessao sessaoId;
 
-	public Reserva(Compra compraId, Sesao sesaoId) {
+	public Reserva(Compra compraId, Sessao sesaoId) {
 		this.compraId = compraId;
-		this.sesaoId = sesaoId;
+		this.sessaoId = sesaoId;
 	}
 }

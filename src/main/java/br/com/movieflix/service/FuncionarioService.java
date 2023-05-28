@@ -39,6 +39,15 @@ public class FuncionarioService {
 		return null;
 	}
 	
+	// Retorna funcionario por email
+	public Funcionario getFuncionarioByEmail(String email) {
+		Optional<Funcionario> funcOpt = this.funcRep.findByEmail(email);
+		if(funcOpt.isPresent()){
+			return funcOpt.get();
+		}
+		return null;
+	}
+	
 	// Paginacao de funcionarios
 	public Page<FuncionarioDto> pageFuncionario(Pageable paginacao) {
 		Page<Funcionario> funcionarios = this.funcRep.findAll(paginacao);

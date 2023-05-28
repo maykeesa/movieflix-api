@@ -54,6 +54,17 @@ public class FuncionarioController {
 
 		return ResponseEntity.notFound().build();
 	}
+	
+	// Lista por email funcionario
+	@GetMapping("/email/{email}")
+	public ResponseEntity<FuncionarioDto> listarByEmail(@PathVariable String email) {
+		if (!email.equals(null)) {
+			Funcionario func = this.funcService.getFuncionarioByEmail(email);
+			return ResponseEntity.ok(new FuncionarioDto(func));
+		}
+
+		return ResponseEntity.notFound().build();
+	}
 
 	// Cadastrar funcionario
 	@PostMapping

@@ -30,8 +30,8 @@ public class UsuarioService {
 	}
 
 	// Retorna usuario por Id
-	public Usuario getUsuarioById(String id) {
-		Optional<Usuario> usuarioOpt = this.userRep.findById(id);
+	public Usuario getUsuarioByCpf(String cpf) {
+		Optional<Usuario> usuarioOpt = this.userRep.findById(cpf);
 		if (usuarioOpt.isPresent()) {
 			return usuarioOpt.get();
 		}
@@ -51,8 +51,8 @@ public class UsuarioService {
 	}
 
 	// Atualiza usuario
-	public Usuario atualizar(String id, UsuarioAttForm usuarioAttForm) {
-		Usuario usuario = usuarioAttForm.atualizar(this.getUsuarioById(id));
+	public Usuario atualizar(String cpf, UsuarioAttForm usuarioAttForm) {
+		Usuario usuario = usuarioAttForm.atualizar(this.getUsuarioByCpf(cpf));
 		this.userRep.save(usuario);
 		return usuario;
 	}

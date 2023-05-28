@@ -41,10 +41,10 @@ public class UsuarioController {
 	}
 
 	// Lista usuario por Id
-	@GetMapping("/{id}")
-	public ResponseEntity<UsuarioDto> listarUnico(@PathVariable String id) {
-		if (this.userService.isUsuarioPresent(id)) {
-			Usuario user = this.userService.getUsuarioById(id);
+	@GetMapping("/{cpf}")
+	public ResponseEntity<UsuarioDto> listarUnico(@PathVariable String cpf) {
+		if (this.userService.isUsuarioPresent(cpf)) {
+			Usuario user = this.userService.getUsuarioByCpf(cpf);
 			return ResponseEntity.ok(new UsuarioDto(user));
 		}
 

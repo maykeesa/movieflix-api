@@ -32,8 +32,7 @@ public class Sessao {
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filiaId;
 	
-	public Sessao(LocalDateTime horarioSessao, Sala sala, Filme filme, Filial filial) {
-		this.horarioSessao = horarioSessao;
+	public Sessao(Sala sala, Filme filme, Filial filial) {
 		this.salaId = sala;
 		this.filmeId = filme;
 		this.filiaId = filial;

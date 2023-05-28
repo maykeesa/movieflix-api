@@ -43,9 +43,8 @@ public class ProdutoService {
     
     // Transforma uma lista de UUID de produtos em uma lista de Produtos
     public ArrayList<Produto> uuidToProduto(List<UUID> produtosId, ProdutoRepository produtoRep){
-    	ArrayList<Produto> produtos;
+    	ArrayList<Produto> produtos = new ArrayList<Produto>();
     	if(produtosId.size() != 0) {
-    		produtos = new ArrayList<Produto>();
     		produtosId.forEach(i -> produtos.add(produtoRep.findById(i).get()));
     		return produtos;
     	}

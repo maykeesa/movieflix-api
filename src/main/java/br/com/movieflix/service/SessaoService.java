@@ -1,16 +1,21 @@
 package br.com.movieflix.service;
 
-import java.net.URI;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.movieflix.dto.SessaoDto;
+import br.com.movieflix.model.Filme;
 import br.com.movieflix.model.Sessao;
 import br.com.movieflix.repository.SessaoRepository;
 
@@ -29,13 +34,17 @@ public class SessaoService {
 		return false;
 	}
 
-	// Retorna sessao por Id
-	public Sessao getSessaoById(UUID id) {
-		Optional<Sessao> sessaoOpt = this.sessaoRep.findById(id);
-		if (sessaoOpt.isPresent()) {
-			return sessaoOpt.get();
+	// Retorna uma lista de sessao de acordo com o filme
+	public List<SessaoDto> listSessaoByFilme(Filme filme){
+		List<SessaoDto> sessoesDto = new ArrayList<>();
+		List<Sessao> sessoes = this.sessaoRep.findByFilmeId(filme);
+		if(sessoes.size() != 0) {
+			for(Sessao sessao : sessoes) {
+				sessoesDto.add(new SessaoDto(sessao));
+			}
 		}
-		return null;
+		
+		return sessoesDto;
 	}
 
 	// paginacao de sessao
@@ -45,13 +54,28 @@ public class SessaoService {
 	}
 
 	// Cadastra sessao
-	public URI cadastrar(Sessao sessao, UriComponentsBuilder uriBuilder) {
-		this.sessaoRep.save(sessao);
-		return uriBuilder.path("/sessao/{id}").buildAndExpand(sessao.getId()).toUri();
+	public void cadastrar(Sessao sessao, List<String> horariosSessao) {
+		List<LocalDateTime> horariosFormatados = this.listStringToLocalDateTime(horariosSessao);
+		for(LocalDateTime data : horariosFormatados) {
+			sessao.setHorarioSessao(data);
+			this.sessaoRep.save(sessao);
+		}
 	}
 
 	// Deleta sessao
 	public void deletarSessaoById(UUID id) {
 		this.sessaoRep.deleteById(id);
+	}
+
+	// Transforma uma lista de horarios em string, em uma de horarios em LocalDateTime
+	public List<LocalDateTime> listStringToLocalDateTime(@NotBlank @NotEmpty List<String> horariosSessoes) {
+		List<LocalDateTime> listaFormatada = new ArrayList<>();
+		if(horariosSessoes.size() != 0) {
+			horariosSessoes.forEach(i -> listaFormatada.add(DateService.dataSessaoToClass(i)));
+			
+			return listaFormatada;
+		}
+		
+		return null;
 	}
 }

@@ -38,6 +38,15 @@ public class AdministradorService {
 		}
 		return null;
 	}
+	
+	// Retorna administrador por email
+	public Administrador getAdministradorByEmail(String email) {
+		Optional<Administrador> administradorOpt = this.administradorRep.findByEmail(email);
+		if (administradorOpt.isPresent()) {
+			return administradorOpt.get();
+		}
+		return null;
+	}
 
 	// paginacao de administradores
 	public Page<AdministradorDto> pageAdministrador(Pageable paginacao) {

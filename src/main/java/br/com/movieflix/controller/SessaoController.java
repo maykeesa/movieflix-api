@@ -1,6 +1,6 @@
 package br.com.movieflix.controller;
 
-import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -22,10 +22,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.movieflix.dto.SessaoDto;
 import br.com.movieflix.form.SessaoForm;
+import br.com.movieflix.model.Filme;
 import br.com.movieflix.model.Sessao;
 import br.com.movieflix.repository.FilialRepository;
 import br.com.movieflix.repository.FilmeRepository;
 import br.com.movieflix.repository.SalaRepository;
+import br.com.movieflix.service.FilmeService;
 import br.com.movieflix.service.SessaoService;
 
 @RestController
@@ -34,10 +36,16 @@ public class SessaoController {
 	
 	@Autowired
 	private SessaoService sessaoService;
+	
+	@Autowired
+	private FilmeService filmeService;
+	
 	@Autowired
 	private SalaRepository salaRep;
+	
 	@Autowired
 	private FilmeRepository filmeRep;
+	
 	@Autowired
 	private FilialRepository filialRep;
 
@@ -48,12 +56,13 @@ public class SessaoController {
 		return sessaoService.pageSessao(paginacao);
 	}
 
-	// Lista sessao por Id
-	@GetMapping("/{id}")
-	public ResponseEntity<SessaoDto> listarUnico(@PathVariable UUID id) {
-		if (this.sessaoService.isSessaoPresent(id)) {
-			Sessao sessao = this.sessaoService.getSessaoById(id);
-			return ResponseEntity.ok(new SessaoDto(sessao));
+	// Lista sessao por filme Id
+	@GetMapping("/{filmeId}")
+	public ResponseEntity<List<SessaoDto>> listarUnico(@PathVariable UUID filmeId) {
+		if (this.filmeService.isFilmePresent(filmeId)) {
+			Filme filme = this.filmeService.getFilmeById(filmeId);
+			List<SessaoDto> sessoes = this.sessaoService.listSessaoByFilme(filme);
+			return ResponseEntity.ok(sessoes);
 		}
 
 		return ResponseEntity.notFound().build();
@@ -61,11 +70,12 @@ public class SessaoController {
 
 	// Cadastrar sessao
 	@PostMapping
-	public ResponseEntity<SessaoDto> cadastrar(@RequestBody @Valid SessaoForm sessaoForm,
+	public ResponseEntity<?> cadastrar(@RequestBody @Valid SessaoForm sessaoForm,
 			UriComponentsBuilder uriBuilder) {
-		Sessao sessao = sessaoForm.converterToModel(salaRep, filmeRep, filialRep);
-		URI uri = this.sessaoService.cadastrar(sessao, uriBuilder);
-		return ResponseEntity.created(uri).body(new SessaoDto(sessao));
+		Sessao sessao = sessaoForm.converterToModel(this.salaRep, this.filmeRep, this.filialRep);
+		this.sessaoService.cadastrar(sessao, sessaoForm.getHorariosSessao());
+		
+		return ResponseEntity.ok("Sessões criadas com Sucesso.");		
 	}
 
 	// Deletar sessao

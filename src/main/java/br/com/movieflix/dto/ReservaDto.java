@@ -1,14 +1,15 @@
-package br.com.movieflix.model.dto;
+package br.com.movieflix.dto;
 
+
+import java.util.UUID;
+
+import org.springframework.data.domain.Page;
 
 import br.com.movieflix.model.Compra;
 import br.com.movieflix.model.Reserva;
-import br.com.movieflix.model.Sesao;
+import br.com.movieflix.model.Sessao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.domain.Page;
-
-import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
@@ -16,12 +17,12 @@ public class ReservaDto {
 
     private UUID id;
     private Compra compraId;
-    private Sesao sesaoId;
+    private Sessao sessaoId;
 
     public ReservaDto(Reserva reserva) {
         this.id = reserva.getId();
         this.compraId = reserva.getCompraId();
-        this.sesaoId = reserva.getSesaoId();
+        this.sessaoId = reserva.getSessaoId();
     }
 
     public static Page<ReservaDto> converter(Page<Reserva> reservas){
