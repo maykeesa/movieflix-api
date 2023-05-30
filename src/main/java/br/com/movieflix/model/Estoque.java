@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -23,5 +24,14 @@ public class Estoque {
 	private Long quantidade;
 	@OneToOne
 	@JoinColumn(referencedColumnName = "id")
-	private Produto produtoId;	
+	private Produto produtoId;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Filial filialId;
+	
+	public Estoque(Long quantidade, Produto produto, Filial filial) {
+		this.quantidade = quantidade;
+		this.produtoId = produto;
+		this.filialId = filial;
+	}
 }

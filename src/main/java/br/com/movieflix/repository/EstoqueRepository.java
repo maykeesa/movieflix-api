@@ -5,10 +5,10 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.movieflix.model.Filial;
+import br.com.movieflix.model.Estoque;
 import br.com.movieflix.model.Produto;
 
-public interface ProdutoRepository extends JpaRepository<Produto, UUID>{
+public interface EstoqueRepository extends JpaRepository<Estoque, UUID>{
 
-	public List<Produto> findByFilialId(Filial filial);
+	public List<Estoque> findByProdutoId(Produto produto);
 }

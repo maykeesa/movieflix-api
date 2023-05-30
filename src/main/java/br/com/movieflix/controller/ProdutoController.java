@@ -25,7 +25,6 @@ import br.com.movieflix.dto.ProdutoDto;
 import br.com.movieflix.form.ProdutoForm;
 import br.com.movieflix.form.att.ProdutoAttForm;
 import br.com.movieflix.model.Produto;
-import br.com.movieflix.repository.FilialRepository;
 import br.com.movieflix.service.ProdutoService;
 
 @RestController
@@ -34,9 +33,6 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
-
-	@Autowired
-	private FilialRepository filialRep;
 
 	// Lista todos os produto
 	@GetMapping
@@ -60,7 +56,7 @@ public class ProdutoController {
 	@PostMapping
 	public ResponseEntity<ProdutoDto> cadastrar(@RequestBody @Valid ProdutoForm produtoForm,
 			UriComponentsBuilder uriBuilder) {
-		Produto produto = produtoForm.converterToModel(this.filialRep);
+		Produto produto = produtoForm.converterToModel();
 		URI uri = this.produtoService.cadastrar(produto, uriBuilder);
 		return ResponseEntity.created(uri).body(new ProdutoDto(produto));
 	}
