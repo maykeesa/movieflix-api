@@ -18,11 +18,11 @@ public class Produto {
 	private UUID id;
 	private String nome;
 	private BigDecimal preco;
+	@Column(columnDefinition = "TEXT")
+	private String srcSnack;
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;
-	@Column(columnDefinition = "TEXT")
-	private String srcSnack;
 	
 	public Produto(String nome, BigDecimal preco, Filial filialId, String srcSnack) {
 		this.nome = nome;

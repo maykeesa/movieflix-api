@@ -15,17 +15,17 @@ import lombok.Getter;
 @Getter
 public class ProdutoForm {
 
-	@NotBlank @NotNull @NotEmpty
+	@NotBlank @NotEmpty
 	private String nome;
 	@NotNull
 	private BigDecimal preco;
 	@NotNull
 	private UUID filialId;
-	@NotBlank @NotNull @NotEmpty
+	@NotBlank @NotEmpty
 	private String srcSnack;
 	
 	public Produto converterToModel(FilialRepository filialRep) {
 		Filial filial = filialRep.findById(this.filialId).get();
-		return new Produto(this.nome, this.preco, filial,this.srcSnack);
+		return new Produto(this.nome, this.preco, filial, this.srcSnack);
 	}	
 }
