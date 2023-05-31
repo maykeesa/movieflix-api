@@ -23,6 +23,8 @@ public class FilialForm {
 	private String cidade;
 	@NotBlank @NotNull @NotEmpty
 	private String uf;
+	@NotBlank @NotNull @NotEmpty
+	private String nome;
 	
 	public Filial converterToModel() {
 		return new Filial(this.cep, this.endereco, this.numero, this.bairro, this.cidade, this.uf);

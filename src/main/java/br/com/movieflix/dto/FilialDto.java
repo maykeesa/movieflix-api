@@ -19,6 +19,7 @@ public class FilialDto {
 	private String bairro;
 	private String cidade;
 	private String uf;
+	private String nome;
 	
 	public FilialDto(Filial filial) {
 		this.id = filial.getId();

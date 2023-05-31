@@ -24,6 +24,7 @@ public class Filial {
 	private String bairro;
 	private String cidade;
 	private String uf;
+	private String nome;
 	
 	public Filial(String cep, String endereco, String numero, String bairro, String cidade, String uf) {
 		this.cep = cep;
