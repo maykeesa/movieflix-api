@@ -18,6 +18,7 @@ public class Filial {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	private String nome;
 	private String cep;
 	private String endereco;
 	private String numero;
@@ -25,7 +26,8 @@ public class Filial {
 	private String cidade;
 	private String uf;
 	
-	public Filial(String cep, String endereco, String numero, String bairro, String cidade, String uf) {
+	public Filial(String nome, String cep, String endereco, String numero, String bairro, String cidade, String uf) {
+		this.nome = nome;
 		this.cep = cep;
 		this.endereco = endereco;
 		this.numero = numero;
