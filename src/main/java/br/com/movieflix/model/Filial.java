@@ -26,12 +26,13 @@ public class Filial {
 	private String uf;
 	private String nome;
 	
-	public Filial(String cep, String endereco, String numero, String bairro, String cidade, String uf) {
+	public Filial(String cep, String endereco, String numero, String bairro, String cidade, String uf, String nome) {
 		this.cep = cep;
 		this.endereco = endereco;
 		this.numero = numero;
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.uf = uf;
+		this.nome = nome;
 	}
 }

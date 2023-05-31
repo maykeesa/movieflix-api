@@ -27,7 +27,7 @@ public class FilialForm {
 	private String nome;
 	
 	public Filial converterToModel() {
-		return new Filial(this.cep, this.endereco, this.numero, this.bairro, this.cidade, this.uf);
+		return new Filial(this.cep, this.endereco, this.numero, this.bairro, this.cidade, this.uf,this.nome);
 	}
 	
 	public Filial atualizar(Filial filial) {

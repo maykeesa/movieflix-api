@@ -29,6 +29,7 @@ public class FilialDto {
 		this.bairro = filial.getBairro();
 		this.cidade = filial.getCidade();
 		this.uf = filial.getUf();
+		this.nome = filial.getNome();
 	}
 	
 	public static Page<FilialDto> converter(Page<Filial> filiais){
