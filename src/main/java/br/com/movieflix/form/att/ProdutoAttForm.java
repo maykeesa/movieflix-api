@@ -16,10 +16,12 @@ public class ProdutoAttForm {
 	private String nome;
 	@NotNull
 	private BigDecimal preco;
+	private String srcSnack;
 	
 	public Produto atualizar(Produto produto) {
 		produto.setNome(this.nome);
 		produto.setPreco(this.preco);
+		produto.setSrcSnack(this.srcSnack);
 		return produto;
 	}
 }

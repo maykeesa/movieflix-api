@@ -21,9 +21,11 @@ public class ProdutoForm {
 	private BigDecimal preco;
 	@NotNull
 	private UUID filialId;
+	@NotBlank @NotNull @NotEmpty
+	private String srcSnack;
 	
 	public Produto converterToModel(FilialRepository filialRep) {
 		Filial filial = filialRep.findById(this.filialId).get();
-		return new Produto(this.nome, this.preco, filial);
+		return new Produto(this.nome, this.preco, filial,this.srcSnack);
 	}	
 }

@@ -3,12 +3,7 @@ package br.com.movieflix.model;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,10 +21,13 @@ public class Produto {
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Filial filialId;
+	@Column(columnDefinition = "TEXT")
+	private String srcSnack;
 	
-	public Produto(String nome, BigDecimal preco, Filial filialId) {
+	public Produto(String nome, BigDecimal preco, Filial filialId, String srcSnack) {
 		this.nome = nome;
 		this.preco = preco;
 		this.filialId = filialId;
+		this.srcSnack = srcSnack;
 	}
 }
