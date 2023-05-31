@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,13 +21,9 @@ public class Produto {
 	private UUID id;
 	private String nome;
 	private BigDecimal preco;
-	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
-	private Filial filialId;
 	
-	public Produto(String nome, BigDecimal preco, Filial filialId) {
+	public Produto(String nome, BigDecimal preco) {
 		this.nome = nome;
 		this.preco = preco;
-		this.filialId = filialId;
 	}
 }

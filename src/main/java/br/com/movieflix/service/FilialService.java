@@ -46,9 +46,9 @@ public class FilialService {
     }
     
 	// Cadastra filial
-	public URI cadastrar(Filial func, UriComponentsBuilder uriBuilder) {
-		this.filialRep.save(func);
-		return uriBuilder.path("/filial/{id}").buildAndExpand(func.getId()).toUri();
+	public URI cadastrar(Filial filial, UriComponentsBuilder uriBuilder) {
+		this.filialRep.save(filial);
+		return uriBuilder.path("/filial/{id}").buildAndExpand(filial.getId()).toUri();
 	}
 	
 	// Atualiza filial
