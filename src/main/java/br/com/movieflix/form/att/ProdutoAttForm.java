@@ -14,11 +14,14 @@ public class ProdutoAttForm {
 
 	@NotBlank @NotNull @NotEmpty
 	private String nome;
+	@NotBlank @NotEmpty
+	private String descricao;
 	@NotNull
 	private BigDecimal preco;
 	
 	public Produto atualizar(Produto produto) {
 		produto.setNome(this.nome);
+		produto.setDescricao(this.descricao);
 		produto.setPreco(this.preco);
 		return produto;
 	}

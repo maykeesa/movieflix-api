@@ -14,10 +14,12 @@ public class ProdutoForm {
 
 	@NotBlank @NotNull @NotEmpty
 	private String nome;
+	@NotBlank @NotEmpty
+	private String descricao;
 	@NotNull
 	private BigDecimal preco;
 	
 	public Produto converterToModel() {
-		return new Produto(this.nome, this.preco);
+		return new Produto(this.nome, this.descricao, this.preco);
 	}	
 }
