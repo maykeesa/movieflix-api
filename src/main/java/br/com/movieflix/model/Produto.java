@@ -3,6 +3,7 @@ package br.com.movieflix.model;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,9 +22,16 @@ public class Produto {
 	private UUID id;
 	private String nome;
 	private BigDecimal preco;
+	@Column(columnDefinition = "TEXT")
+	private String srcSnack;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Filial filialId;
 	
-	public Produto(String nome, BigDecimal preco) {
+	public Produto(String nome, BigDecimal preco, Filial filialId, String srcSnack) {
 		this.nome = nome;
 		this.preco = preco;
+		this.filialId = filialId;
+		this.srcSnack = srcSnack;
 	}
 }

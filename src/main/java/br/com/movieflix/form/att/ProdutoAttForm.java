@@ -12,14 +12,17 @@ import lombok.Setter;
 @Setter
 public class ProdutoAttForm {
 
-	@NotBlank @NotNull @NotEmpty
+	@NotBlank @NotEmpty
 	private String nome;
 	@NotNull
 	private BigDecimal preco;
+	@NotBlank @NotEmpty
+	private String srcSnack;
 	
 	public Produto atualizar(Produto produto) {
 		produto.setNome(this.nome);
 		produto.setPreco(this.preco);
+		produto.setSrcSnack(this.srcSnack);
 		return produto;
 	}
 }
