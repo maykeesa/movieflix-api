@@ -24,14 +24,10 @@ public class Produto {
 	private BigDecimal preco;
 	@Column(columnDefinition = "TEXT")
 	private String srcSnack;
-	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
-	private Filial filialId;
 	
-	public Produto(String nome, BigDecimal preco, Filial filialId, String srcSnack) {
+	public Produto(String nome, BigDecimal preco, String srcSnack) {
 		this.nome = nome;
 		this.preco = preco;
-		this.filialId = filialId;
 		this.srcSnack = srcSnack;
 	}
 }

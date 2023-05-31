@@ -16,13 +16,10 @@ public class ProdutoForm {
 	private String nome;
 	@NotNull
 	private BigDecimal preco;
-	@NotNull
-	private UUID filialId;
 	@NotBlank @NotEmpty
 	private String srcSnack;
 	
-	public Produto converterToModel(FilialRepository filialRep) {
-		Filial filial = filialRep.findById(this.filialId).get();
-		return new Produto(this.nome, this.preco, filial, this.srcSnack);
+	public Produto converterToModel() {
+		return new Produto(this.nome, this.preco, this.srcSnack);
 	}	
 }
