@@ -13,23 +13,23 @@ import lombok.Getter;
 public class FilialDto {
 
 	private UUID id;
+	private String nome;
 	private String cep;
 	private String endereco;
 	private String numero;
 	private String bairro;
 	private String cidade;
 	private String uf;
-	private String nome;
 	
 	public FilialDto(Filial filial) {
 		this.id = filial.getId();
+		this.nome = filial.getNome();
 		this.cep = filial.getCep();
 		this.endereco = filial.getEndereco();
 		this.numero = filial.getNumero();
 		this.bairro = filial.getBairro();
 		this.cidade = filial.getCidade();
 		this.uf = filial.getUf();
-		this.nome = filial.getNome();
 	}
 	
 	public static Page<FilialDto> converter(Page<Filial> filiais){
