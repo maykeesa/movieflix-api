@@ -1,6 +1,7 @@
 package br.com.movieflix.service;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.movieflix.dto.EstoqueDto;
 import br.com.movieflix.model.Estoque;
+import br.com.movieflix.model.Filial;
 import br.com.movieflix.repository.EstoqueRepository;
 
 @Service
@@ -30,12 +32,8 @@ public class EstoqueService {
 	}
     
     // Retorna estoque por filial
-    public Estoque getEstoqueById(UUID id) {
-        Optional<Estoque> estoqueOpt = this.estoqueRep.findById(id);
-        if(estoqueOpt.isPresent()){
-            return estoqueOpt.get();
-        }
-        return null;
+    public List<Estoque> getEstoqueByFilialId(Filial filial) {
+        return this.estoqueRep.findByFilialId(filial);
     }
 
     // Paginacao de estoque
