@@ -13,6 +13,7 @@ import lombok.Getter;
 public class FilialDto {
 
 	private UUID id;
+	private String nome;
 	private String cep;
 	private String endereco;
 	private String numero;
@@ -22,6 +23,7 @@ public class FilialDto {
 	
 	public FilialDto(Filial filial) {
 		this.id = filial.getId();
+		this.nome = filial.getNome();
 		this.cep = filial.getCep();
 		this.endereco = filial.getEndereco();
 		this.numero = filial.getNumero();

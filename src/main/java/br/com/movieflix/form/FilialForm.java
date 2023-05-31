@@ -11,6 +11,8 @@ import lombok.Getter;
 @Getter
 public class FilialForm {
 
+	@NotBlank @NotNull @NotEmpty
+	private String nome;
 	@NotBlank @NotNull @NotEmpty @Size(min = 8, max = 8)
 	private String cep;
 	@NotBlank @NotNull @NotEmpty
@@ -25,10 +27,11 @@ public class FilialForm {
 	private String uf;
 	
 	public Filial converterToModel() {
-		return new Filial(this.cep, this.endereco, this.numero, this.bairro, this.cidade, this.uf);
+		return new Filial(this.nome, this.cep, this.endereco, this.numero, this.bairro, this.cidade, this.uf);
 	}
 	
 	public Filial atualizar(Filial filial) {
+		filial.setNome(this.nome);
 		filial.setCep(this.cep);
 		filial.setEndereco(this.endereco);
 		filial.setNumero(this.numero);
