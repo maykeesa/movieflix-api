@@ -25,7 +25,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.movieflix.dto.FuncionarioDto;
 import br.com.movieflix.form.FuncionarioForm;
 import br.com.movieflix.form.att.FuncionarioAttForm;
-import br.com.movieflix.model.Catalogo;
 import br.com.movieflix.model.Filial;
 import br.com.movieflix.model.Funcionario;
 import br.com.movieflix.repository.FilialRepository;
@@ -63,8 +62,8 @@ public class FuncionarioController {
 	}
 	
 	// Lista funcionario de filial
-	@GetMapping("/{filialId}")
-	public ResponseEntity<List<Funcionario>> listarFuncionarioFilial(@PathVariable String filialId) {
+	@GetMapping("/filial/{filialId}")
+	public ResponseEntity<List<FuncionarioDto>> listarFuncionarioFilial(@PathVariable String filialId) {
 		UUID filialIdConvertido = UUID.fromString(filialId);
 		
 		if(this.filialService.isFilialPresent(filialIdConvertido)) {

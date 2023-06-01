@@ -1,6 +1,8 @@
 package br.com.movieflix.service;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -49,9 +51,17 @@ public class FuncionarioService {
 		return null;
 	}
 	
-	public List<Funcionario> getFuncionarioByFilialId(Filial filial) {
-		// TODO Auto-generated method stub
-		return null;
+	// Retorna Lista funcionarios em Dto
+	public List<FuncionarioDto> getFuncionarioByFilialId(Filial filial) {
+		List<Funcionario> filiais = this.funcRep.findByFilialId(filial);
+		return this.listConverterToDto(filiais);
+	}
+	
+	// Converter lista to listaDto
+	public List<FuncionarioDto> listConverterToDto(List<Funcionario> funcionarios){
+		List<FuncionarioDto> funcFormatado = new ArrayList<>();
+		funcionarios.forEach(i -> funcFormatado.add(new FuncionarioDto(i)));
+		return funcFormatado;
 	}
 	
 	// Paginacao de funcionarios
