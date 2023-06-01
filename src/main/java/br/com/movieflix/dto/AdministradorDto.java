@@ -6,13 +6,12 @@ import org.springframework.data.domain.Page;
 
 import br.com.movieflix.model.Administrador;
 import br.com.movieflix.model.Filial;
-import br.com.movieflix.model.Login;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class AdministradorDto implements Login{
+public class AdministradorDto implements LoginDto{
 
 	private UUID id;
 	private String nome;
@@ -29,4 +28,5 @@ public class AdministradorDto implements Login{
 	public static Page<AdministradorDto> converter(Page<Administrador> administradores) {
 		return administradores.map(AdministradorDto::new);
 	}
+
 }

@@ -1,5 +1,6 @@
 package br.com.movieflix.model;
 
-public interface Login {
+public interface UserPassword {
 
+	public String getSenha();
 }

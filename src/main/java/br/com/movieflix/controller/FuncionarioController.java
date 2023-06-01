@@ -1,6 +1,7 @@
 package br.com.movieflix.controller;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -24,8 +25,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.movieflix.dto.FuncionarioDto;
 import br.com.movieflix.form.FuncionarioForm;
 import br.com.movieflix.form.att.FuncionarioAttForm;
+import br.com.movieflix.model.Catalogo;
+import br.com.movieflix.model.Filial;
 import br.com.movieflix.model.Funcionario;
 import br.com.movieflix.repository.FilialRepository;
+import br.com.movieflix.service.FilialService;
 import br.com.movieflix.service.FuncionarioService;
 
 @RestController
@@ -35,6 +39,9 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioService funcService;
 
+	@Autowired
+	private FilialService filialService;
+	
 	@Autowired
 	private FilialRepository filialRep;
 
@@ -52,6 +59,18 @@ public class FuncionarioController {
 			return ResponseEntity.ok(new FuncionarioDto(func));
 		}
 
+		return ResponseEntity.notFound().build();
+	}
+	
+	// Lista funcionario de filial
+	@GetMapping("/{filialId}")
+	public ResponseEntity<List<Funcionario>> listarFuncionarioFilial(@PathVariable String filialId) {
+		UUID filialIdConvertido = UUID.fromString(filialId);
+		
+		if(this.filialService.isFilialPresent(filialIdConvertido)) {
+			Filial filial = this.filialService.getFilialById(filialIdConvertido);
+			return ResponseEntity.ok(funcService.getFuncionarioByFilialId(filial));			
+		}
 		return ResponseEntity.notFound().build();
 	}
 	

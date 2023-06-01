@@ -12,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.movieflix.dto.FuncionarioDto;
 import br.com.movieflix.form.att.FuncionarioAttForm;
+import br.com.movieflix.model.Filial;
 import br.com.movieflix.model.Funcionario;
 import br.com.movieflix.repository.FuncionarioRepository;
 
@@ -45,6 +46,11 @@ public class FuncionarioService {
 		if(funcOpt.isPresent()){
 			return funcOpt.get();
 		}
+		return null;
+	}
+	
+	public List<Funcionario> getFuncionarioByFilialId(Filial filial) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Funcionario implements Login{
+public class Funcionario implements UserPassword{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

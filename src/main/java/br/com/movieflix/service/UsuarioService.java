@@ -37,6 +37,15 @@ public class UsuarioService {
 		}
 		return null;
 	}
+	
+	// Retorna usuario por email
+	public Usuario getUsuarioByEmail(String email) {
+		Optional<Usuario> userOpt = this.userRep.findByEmail(email);
+		if(userOpt.isPresent()){
+			return userOpt.get();
+		}
+		return null;
+	}
 
 	// Paginacao de usuarios
 	public Page<UsuarioDto> pageUsuario(Pageable paginacao) {
