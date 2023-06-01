@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Usuario{
+public class Usuario implements Login{
 
 	@Id
 	private String cpf;

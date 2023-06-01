@@ -19,6 +19,8 @@ public class FilmeDto {
     private int nota;
     private String sinopse;
     private String diretor;
+    private boolean dublado;
+    private int faixaEtaria;
     private String srcCapa;
     private LocalDateTime dataLancamento;
 
@@ -28,6 +30,8 @@ public class FilmeDto {
         this.nota = filme.getNota();
         this.sinopse = filme.getSinopse();
         this.diretor = filme.getDiretor();
+        this.dublado = filme.isDublado();
+        this.faixaEtaria = filme.getFaixaEtaria();
         this.srcCapa = filme.getSrcCapa();
         this.dataLancamento = filme.getDataLancamento();
     }

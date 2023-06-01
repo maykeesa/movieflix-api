@@ -25,25 +25,32 @@ public class Filme {
 	@Column(columnDefinition = "TEXT")
 	private String sinopse;
 	private String diretor;
+    private boolean isDublado;
+    private int faixaEtaria;
 	@Column(columnDefinition = "TEXT")
 	private String srcCapa;
 	private LocalDateTime dataLancamento;
 
-	public Filme(String nome, int nota, String sinopse, String diretor, LocalDateTime dataLancamento) {
+	public Filme(String nome, int nota, String sinopse, String diretor, boolean isDublado, 
+			int faixaEtaria, LocalDateTime dataLancamento) {
 		this.nome = nome;
 		this.nota = nota;
 		this.sinopse = sinopse;
 		this.diretor = diretor;
+		this.isDublado = isDublado;
+		this.faixaEtaria = faixaEtaria;
 		this.srcCapa = "https://shre.ink/capaUndefined";
 		this.dataLancamento = dataLancamento;
 	}
 	
-	public Filme(String nome, int nota, String sinopse, String diretor, String src,
-			LocalDateTime dataLancamento) {
+	public Filme(String nome, int nota, String sinopse, String diretor, boolean isDublado, 
+			int faixaEtaria, String src, LocalDateTime dataLancamento) {
 		this.nome = nome;
 		this.nota = nota;
 		this.sinopse = sinopse;
 		this.diretor = diretor;
+		this.isDublado = isDublado;
+		this.faixaEtaria = faixaEtaria;
 		this.srcCapa = src;
 		this.dataLancamento = dataLancamento;
 	}
