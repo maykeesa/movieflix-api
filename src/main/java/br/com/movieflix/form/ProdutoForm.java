@@ -12,14 +12,16 @@ import lombok.Getter;
 @Getter
 public class ProdutoForm {
 
-	@NotBlank @NotNull @NotEmpty
+	@NotBlank @NotEmpty
 	private String nome;
 	@NotBlank @NotEmpty
 	private String descricao;
 	@NotNull
 	private BigDecimal preco;
+	@NotBlank @NotEmpty
+	private String srcSnack;
 	
 	public Produto converterToModel() {
-		return new Produto(this.nome, this.descricao, this.preco);
+		return new Produto(this.nome, this.descricao, this.preco, this.srcSnack);
 	}	
 }

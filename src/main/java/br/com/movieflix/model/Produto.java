@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,10 +25,13 @@ public class Produto {
 	@Column(columnDefinition = "TEXT")
 	private String descricao;
 	private BigDecimal preco;
+	@Column(columnDefinition = "TEXT")
+	private String srcSnack;
 	
-	public Produto(String nome, String descricao, BigDecimal preco) {
+	public Produto(String nome, String descricao, BigDecimal preco, String srcSnack) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
+		this.srcSnack = srcSnack;
 	}
 }

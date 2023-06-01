@@ -6,12 +6,13 @@ import org.springframework.data.domain.Page;
 
 import br.com.movieflix.model.Administrador;
 import br.com.movieflix.model.Filial;
+import br.com.movieflix.model.Login;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class AdministradorDto {
+public class AdministradorDto implements Login{
 
 	private UUID id;
 	private String nome;

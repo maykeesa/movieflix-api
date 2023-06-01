@@ -23,6 +23,10 @@ public class FilmeForm {
     private String sinopse;
     @NotBlank @NotEmpty
     private String diretor;
+    @NotNull
+    private boolean isDublado;
+    @NotNull
+    private int faixaEtaria;
     private String srcCapa;
     @NotBlank @NotEmpty
     private String dataLancamento;
@@ -30,9 +34,11 @@ public class FilmeForm {
     public Filme converterToModel() {
     	LocalDateTime dataLancamento = DateService.dataStringToClass(this.dataLancamento);
     	if(this.srcCapa == "") {
-    		return new Filme(this.nome, this.nota, this.sinopse, this.diretor, dataLancamento);    		
+    		return new Filme(this.nome, this.nota, this.sinopse, this.diretor, this.isDublado, 
+    				this.faixaEtaria, dataLancamento);    		
     	}
-    	return new Filme(this.nome, this.nota, this.sinopse, this.diretor, this.srcCapa, dataLancamento);   
+    	return new Filme(this.nome, this.nota, this.sinopse, this.diretor, this.isDublado, 
+    			this.faixaEtaria, this.srcCapa, dataLancamento);   
     }
 
     public Filme atualizar(Filme filme) {

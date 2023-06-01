@@ -4,13 +4,14 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.domain.Page;
 
+import br.com.movieflix.model.Login;
 import br.com.movieflix.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UsuarioDto {
+public class UsuarioDto implements Login{
 
 	private String cpf;
 	private String nome;
