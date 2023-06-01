@@ -14,6 +14,8 @@ public class ProdutoAttForm {
 
 	@NotBlank @NotEmpty
 	private String nome;
+	@NotBlank @NotEmpty
+	private String descricao;
 	@NotNull
 	private BigDecimal preco;
 	@NotBlank @NotEmpty
@@ -21,6 +23,7 @@ public class ProdutoAttForm {
 	
 	public Produto atualizar(Produto produto) {
 		produto.setNome(this.nome);
+		produto.setDescricao(this.descricao);
 		produto.setPreco(this.preco);
 		produto.setSrcSnack(this.srcSnack);
 		return produto;

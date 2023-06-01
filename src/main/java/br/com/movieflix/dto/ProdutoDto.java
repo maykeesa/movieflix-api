@@ -15,12 +15,14 @@ public class ProdutoDto {
 
 	private UUID id;
 	private String nome;
+	private String descricao;
 	private BigDecimal preco;
 	private String srcSnack;
 	
 	public ProdutoDto(Produto produto) {
 		this.id = produto.getId();
 		this.nome = produto.getNome();
+		this.descricao = produto.getDescricao();
 		this.preco = produto.getPreco();
 		this.srcSnack = produto.getSrcSnack();
 	}
