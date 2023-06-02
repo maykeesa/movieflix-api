@@ -1,6 +1,8 @@
 package br.com.movieflix.service;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.movieflix.dto.SalaDto;
 import br.com.movieflix.form.att.SalaAttForm;
+import br.com.movieflix.model.Filial;
 import br.com.movieflix.model.Sala;
 import br.com.movieflix.repository.SalaRepository;
 
@@ -37,6 +40,19 @@ public class SalaService {
 			return salaOpt.get();
 		}
 		return null;
+	}
+	
+	// Retorna Lista de sala em Dto
+	public List<SalaDto> getSalaByFilialId(Filial filial) {
+		List<Sala> salas = this.salaRep.findByFilialId(filial);
+		return this.listConverterToDto(salas);
+	}
+	
+	// Converter lista to listaDto
+	public List<SalaDto> listConverterToDto(List<Sala> salas){
+		List<SalaDto> salaFormatado = new ArrayList<>();
+		salas.forEach(i -> salaFormatado.add(new SalaDto(i)));
+		return salaFormatado;
 	}
 
 	// paginacao de sala

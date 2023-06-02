@@ -45,7 +45,6 @@ public class FuncionarioService {
 	// Retorna funcionario por email
 	public Funcionario getFuncionarioByEmail(String email) {
 		Optional<Funcionario> funcOpt = this.funcRep.findByEmail(email);
-		System.out.println("aaaaaa");
 		if(funcOpt.isPresent()){
 			return funcOpt.get();
 		}

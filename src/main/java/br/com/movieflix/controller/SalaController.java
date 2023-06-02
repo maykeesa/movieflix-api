@@ -1,6 +1,7 @@
 package br.com.movieflix.controller;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -24,8 +25,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.movieflix.dto.SalaDto;
 import br.com.movieflix.form.SalaForm;
 import br.com.movieflix.form.att.SalaAttForm;
+import br.com.movieflix.model.Filial;
 import br.com.movieflix.model.Sala;
 import br.com.movieflix.repository.FilialRepository;
+import br.com.movieflix.service.FilialService;
 import br.com.movieflix.service.SalaService;
 
 @RestController
@@ -35,6 +38,9 @@ public class SalaController {
 	@Autowired
 	private SalaService salaService;
 
+	@Autowired
+	private FilialService filialService;
+	
 	@Autowired
 	private FilialRepository filialRep;
 
@@ -52,6 +58,18 @@ public class SalaController {
 			return ResponseEntity.ok(new SalaDto(sala));
 		}
 
+		return ResponseEntity.notFound().build();
+	}
+	
+	// Lista sala por filial
+	@GetMapping("/filial/{filialId}")
+	public ResponseEntity<List<SalaDto>> listarSalaFilial(@PathVariable String filialId) {
+		UUID filialIdConvertido = UUID.fromString(filialId);
+		
+		if(this.filialService.isFilialPresent(filialIdConvertido)) {
+			Filial filial = this.filialService.getFilialById(filialIdConvertido);
+			return ResponseEntity.ok(salaService.getSalaByFilialId(filial));			
+		}
 		return ResponseEntity.notFound().build();
 	}
 
