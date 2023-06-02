@@ -20,6 +20,7 @@ public class Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	private String cadeira;
 	@OneToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Compra compraId;
@@ -27,7 +28,8 @@ public class Reserva {
 	@JoinColumn(referencedColumnName = "id")
 	private Sessao sessaoId;
 
-	public Reserva(Compra compraId, Sessao sesaoId) {
+	public Reserva(String cadeira, Compra compraId, Sessao sesaoId) {
+		this.cadeira = cadeira;
 		this.compraId = compraId;
 		this.sessaoId = sesaoId;
 	}

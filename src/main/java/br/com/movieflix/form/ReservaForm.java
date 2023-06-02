@@ -2,6 +2,8 @@ package br.com.movieflix.form;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.movieflix.model.Compra;
@@ -14,6 +16,8 @@ import lombok.Getter;
 @Getter
 public class ReservaForm {
 
+	@NotEmpty @NotBlank
+	private String cadeira;
 	@NotNull
     private UUID compraId;
 	@NotNull
@@ -22,6 +26,6 @@ public class ReservaForm {
     public Reserva converterToModel(CompraRepository compraRepository, SessaoRepository sessaoRepository) {
         Compra compra = compraRepository.findById(compraId).get();
         Sessao sessao = sessaoRepository.findById(sessaoId).get();
-        return new Reserva(compra, sessao);
+        return new Reserva(this.cadeira, compra, sessao);
     }
 }

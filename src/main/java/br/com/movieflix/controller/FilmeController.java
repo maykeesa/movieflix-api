@@ -47,7 +47,7 @@ public class FilmeController {
     // Cadastrar filme
     @PostMapping
     public ResponseEntity<FilmeDto> cadastrar(@RequestBody @Valid FilmeForm filmeForm, UriComponentsBuilder uriBuilder) {
-        Filme filme = filmeForm.converterToModel();
+    	Filme filme = filmeForm.converterToModel();
         URI uri = this.filmeService.cadastrar(filme, uriBuilder);
         return ResponseEntity.created(uri).body(new FilmeDto(filme));
     }

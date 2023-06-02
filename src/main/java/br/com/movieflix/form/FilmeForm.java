@@ -47,6 +47,9 @@ public class FilmeForm {
         filme.setNota(this.nota);
         filme.setSinopse(this.sinopse);
         filme.setDiretor(this.diretor);
+        filme.setDublado(this.isDublado);
+        filme.setFaixaEtaria(faixaEtaria);
+        filme.setSrcCapa(this.srcCapa);
         filme.setDataLancamento(dataLancamento);
         return filme;
     }
