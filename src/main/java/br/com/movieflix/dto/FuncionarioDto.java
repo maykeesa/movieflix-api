@@ -14,6 +14,7 @@ import lombok.Getter;
 public class FuncionarioDto implements LoginDto{
 
 	private UUID id;
+	private String role;
 	private String nome;
 	private String email;
 	private boolean gerente;
@@ -21,6 +22,7 @@ public class FuncionarioDto implements LoginDto{
 	
 	public FuncionarioDto(Funcionario func) {
 		this.id = func.getId();
+		this.role = func.getRole();
 		this.nome = func.getNome();
 		this.email = func.getEmail();
 		this.gerente = func.isGerent();

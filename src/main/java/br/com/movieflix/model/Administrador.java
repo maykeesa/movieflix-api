@@ -20,6 +20,7 @@ public class Administrador implements UserPassword{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	private String role;
 	private String nome;
 	private String email;
 	private String senha;
@@ -28,6 +29,7 @@ public class Administrador implements UserPassword{
 	private Filial filialId;
 
 	public Administrador(String nome, String email, String senha, Filial filialId) {
+		this.role = "admin";
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;

@@ -21,6 +21,7 @@ public class Funcionario implements UserPassword{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	private String role;
 	private String nome;
 	private boolean isGerent;
 	private String email;
@@ -31,6 +32,7 @@ public class Funcionario implements UserPassword{
 	private Filial filialId;
 	
 	public Funcionario(String nome, String email, String senha, Filial filial) {
+		this.role = "func";
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;

@@ -14,12 +14,14 @@ import lombok.Getter;
 public class AdministradorDto implements LoginDto{
 
 	private UUID id;
+	private String role;
 	private String nome;
 	private String email;
 	private Filial filialId;
 
 	public AdministradorDto(Administrador administrador) {
 		this.id = administrador.getId();
+		this.role = administrador.getRole();
 		this.nome = administrador.getNome();
 		this.email = administrador.getEmail();
 		this.filialId = administrador.getFilialId();

@@ -1,8 +1,11 @@
 package br.com.movieflix.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,14 +39,17 @@ public class LoginController {
 	private UsuarioService userService;
 	
 	@PostMapping
-	public ResponseEntity<LoginDto> login(LoginForm form){
+	public ResponseEntity<LoginDto> login(@RequestBody @Valid LoginForm form){
 		String role = loginService.logar(form);
+		
 		if(role.equals("admin")) {
 			Administrador admin = this.adminService.getAdministradorByEmail(form.getEmail());
 			return ResponseEntity.ok(new AdministradorDto(admin));
+			
 		}else if(role.equals("func")) {
 			Funcionario func = this.funcService.getFuncionarioByEmail(form.getEmail());
 			return ResponseEntity.ok(new FuncionarioDto(func));
+			
 		}else if(role.equals("user")) {
 			Usuario user = this.userService.getUsuarioByEmail(form.getEmail());
 			return ResponseEntity.ok(new UsuarioDto(user));

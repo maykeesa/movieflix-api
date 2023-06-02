@@ -15,6 +15,7 @@ public class Usuario implements UserPassword{
 
 	@Id
 	private String cpf;
+	private String role;
 	private String nome;
 	private String email;
 	private String senha;
@@ -23,6 +24,7 @@ public class Usuario implements UserPassword{
 	
 	public Usuario(String cpf, String nome, String email, String senha, LocalDateTime dataNascimento) {
 		this.cpf = cpf;
+		this.role = "user";
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;

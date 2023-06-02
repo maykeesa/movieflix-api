@@ -25,19 +25,18 @@ public class LoginService {
 		String email = form.getEmail();
 		String senha = form.getSenha();
 		
-		if (!adminService.getAdministradorByEmail(email).equals(null)) {
+		if (adminService.getAdministradorByEmail(email) != null) {
 			Administrador admin = adminService.getAdministradorByEmail(email);
 			if(this.verificaSenha(admin, senha)) {
 				return "admin";
-			}
-			
-		} else if (!funcService.getFuncionarioByEmail(email).equals(null)) {
+			}	
+		} else if (funcService.getFuncionarioByEmail(email) != null) {
 			Funcionario func = funcService.getFuncionarioByEmail(email);
 			if(this.verificaSenha(func, senha)) {
 				return "func";
 			}
 			
-		} else if (!userService.getUsuarioByEmail(email).equals(null)) {
+		} else if (userService.getUsuarioByEmail(email) != null) {
 			Usuario user = userService.getUsuarioByEmail(email);
 			if(this.verificaSenha(user, senha)) {
 				return "user";

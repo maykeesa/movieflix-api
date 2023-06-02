@@ -13,6 +13,7 @@ import lombok.Getter;
 public class UsuarioDto implements LoginDto{
 
 	private String cpf;
+	private String role;
 	private String nome;
 	private String email;
 	private LocalDateTime dataNascimento;
@@ -20,6 +21,7 @@ public class UsuarioDto implements LoginDto{
 	
 	public UsuarioDto(Usuario user) {
 		this.cpf = user.getCpf();
+		this.role = user.getRole();
 		this.nome = user.getNome();
 		this.email = user.getEmail();
 		this.dataNascimento = user.getDataNascimento();
