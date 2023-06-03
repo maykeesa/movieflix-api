@@ -16,6 +16,7 @@ public class UsuarioDto implements LoginDto{
 	private String role;
 	private String nome;
 	private String email;
+	private int pontos;
 	private LocalDateTime dataNascimento;
 	private LocalDateTime contaCriada;
 	
@@ -24,6 +25,7 @@ public class UsuarioDto implements LoginDto{
 		this.role = user.getRole();
 		this.nome = user.getNome();
 		this.email = user.getEmail();
+		this.pontos = user.getPontos();
 		this.dataNascimento = user.getDataNascimento();
 		this.contaCriada = user.getContaCriada();
 	}

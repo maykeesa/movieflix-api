@@ -19,6 +19,7 @@ public class Usuario implements UserPassword{
 	private String nome;
 	private String email;
 	private String senha;
+	private int pontos;
 	private LocalDateTime dataNascimento;
 	private LocalDateTime contaCriada;
 	
@@ -28,7 +29,12 @@ public class Usuario implements UserPassword{
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.pontos = 0;
 		this.dataNascimento = dataNascimento;
 		this.contaCriada = LocalDateTime.now();
+	}
+	
+	public void addPontos(int pontos) {
+		this.pontos += pontos;
 	}
 }

@@ -1,6 +1,7 @@
 package br.com.movieflix.service;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,7 +14,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.movieflix.dto.CompraDto;
 import br.com.movieflix.form.att.CompraAttForm;
 import br.com.movieflix.model.Compra;
+import br.com.movieflix.model.Produto;
+import br.com.movieflix.model.Usuario;
 import br.com.movieflix.repository.CompraRepository;
+import br.com.movieflix.repository.UsuarioRepository;
 
 @Service
 public class CompraService {
@@ -21,6 +25,9 @@ public class CompraService {
 	@Autowired
 	private CompraRepository compraRep;
 
+	@Autowired
+	private UsuarioRepository userRep;
+	
 	// Retorna um booleano se compra existe ou nao
 	public boolean isCompraPresent(UUID id) {
 		Optional<Compra> comprarOpt = this.compraRep.findById(id);
@@ -47,8 +54,23 @@ public class CompraService {
 
 	// Cadastra compra
 	public URI cadastrar(Compra compra, UriComponentsBuilder uriBuilder) {
+		this.addPontosUsuario(compra.getUsuario(), compra.getProdutosCompra());
 		this.compraRep.save(compra);
 		return uriBuilder.path("/compra/{id}").buildAndExpand(compra.getId()).toUri();
+	}
+	
+	// Atualizar pontos para usuario
+	public void addPontosUsuario(Usuario user, List<Produto> produtos) {
+		int pontos = 0;
+		if(produtos.size() != 0) {
+			for(Produto produto : produtos) {
+				int calcPontos = (int) (produto.getPreco().doubleValue() * 0.5);
+				pontos += calcPontos;
+			}
+			
+			user.addPontos(pontos);
+			userRep.save(user);
+		}
 	}
 
 	// Atualiza compra
