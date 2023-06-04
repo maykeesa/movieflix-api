@@ -37,4 +37,8 @@ public class Usuario implements UserPassword{
 	public void addPontos(int pontos) {
 		this.pontos += pontos;
 	}
+	
+	public void subPontos(int pontos) {
+		this.pontos -= pontos;
+	}
 }

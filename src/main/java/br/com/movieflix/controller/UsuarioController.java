@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -59,12 +60,24 @@ public class UsuarioController {
 		URI uri = this.userService.cadastrar(user, uriBuilder);
 		return ResponseEntity.created(uri).body(new UsuarioDto(user));
 	}
+	
+	// Descontar ou somar pontos usuario
+	@PostMapping("/{cpf}/pontos/{qtd}")
+	public ResponseEntity<UsuarioDto> descontarPontos(@PathVariable String cpf, @PathVariable int qtd,
+			@RequestParam(required = true) String calculo) {
+		Usuario user = this.userService.usuarioAddPontos(cpf, qtd, calculo);
+		if(user != null) {
+			return ResponseEntity.ok().body(new UsuarioDto(user));			
+		}
+		
+		return ResponseEntity.badRequest().build();
+	}
 
 	// Editar usuario
-	@PutMapping("/{id}")
-	public ResponseEntity<UsuarioDto> atualizar(@PathVariable String id, @RequestBody @Valid UsuarioAttForm userAttForm) {
-		if (this.userService.isUsuarioPresent(id)) {
-			Usuario user = this.userService.atualizar(id, userAttForm);
+	@PutMapping("/{cpf}")
+	public ResponseEntity<UsuarioDto> atualizar(@PathVariable String cpf, @RequestBody @Valid UsuarioAttForm userAttForm) {
+		if (this.userService.isUsuarioPresent(cpf)) {
+			Usuario user = this.userService.atualizar(cpf, userAttForm);
 			return ResponseEntity.ok(new UsuarioDto(user));
 		}
 
@@ -72,10 +85,10 @@ public class UsuarioController {
 	}
 
 	// Deletar usuario
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> remover(@PathVariable String id) {
-		if (this.userService.isUsuarioPresent(id)) {
-			this.userService.deletarUsuarioById(id);
+	@DeleteMapping("/{cpf}")
+	public ResponseEntity<?> remover(@PathVariable String cpf) {
+		if (this.userService.isUsuarioPresent(cpf)) {
+			this.userService.deletarUsuarioById(cpf);
 			return ResponseEntity.ok().build();
 		}
 

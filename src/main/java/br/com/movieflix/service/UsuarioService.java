@@ -46,6 +46,22 @@ public class UsuarioService {
 		}
 		return null;
 	}
+	
+	// Add pontos no usuário
+	public Usuario usuarioAddPontos(String cpf, int qtd, String calculo) {
+		Usuario user = this.getUsuarioByCpf(cpf);
+		if(calculo.equals("sum")) {
+			user.addPontos(qtd);
+			this.userRep.save(user);
+			return user;
+			
+		}else if(calculo.equals("sub")) {
+			user.subPontos(qtd);
+			this.userRep.save(user);
+			return user;
+		}
+		return null;
+	}
 
 	// Paginacao de usuarios
 	public Page<UsuarioDto> pageUsuario(Pageable paginacao) {
