@@ -1,5 +1,5 @@
 # Movieflix API - 🎥
-* O Movieflix foi um projeto de faculdade, onde tinhámos o objetivo de desenvolver uma aplicação com o objetivo de *"vende-lá"*, repositório referente ao [front-end](https://github.com/George-b1t/movieflix-frontend).
+* O Movieflix foi um projeto de faculdade, onde tinhámos o objetivo de desenvolver uma aplicação com o objetivo de *"vende-lá"*, e o tema escolhido por nós foi cinema, repositório referente ao [front-end](https://github.com/George-b1t/movieflix-frontend).
 
 <br>
 
