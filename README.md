@@ -52,7 +52,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
     <td align="center">
       <a href="#">
         <a>
-          <img src="https://media.licdn.com/dms/image/v2/D4D03AQGBRjQ7OSO-Ew/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1724977185779?e=1739404800&v=beta&t=Lh2mjAv0sAUwDA-EcTTU_IHlMLik-enMHVKxDyclBP8" width="100px;" alt="Foto do João no GitHub"/><br>
+          <img src="https://avatars.githubusercontent.com/u/79545726?v=4" width="100px;" alt="Foto do João no GitHub"/><br>
         </a>
         <sub>
           <b>João Marcelo</b>
